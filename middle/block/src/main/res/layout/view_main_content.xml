@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical|start"
+    android:orientation="vertical"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <EditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center"
+        android:autoLink="all"
+        android:background="@android:color/transparent"
+        android:gravity="start|center|top"
+        android:hint="@string/hint_content"
+        android:lineSpacingExtra="4dp"
+        android:minLines="3"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:scrollbars="none"
+        android:textColor="@color/master_textColorPrimary"
+        android:textColorHighlight="@color/master_colorAccentDark"
+        android:textColorHint="@color/master_textColorSecondary"
+        android:textCursorDrawable="@drawable/cursor_accent"
+        android:textSize="16sp"
+        tools:ignore="SpUsage" />
+
+    <com.timecat.middle.block.view.StablerRecyclerView
+        android:id="@+id/rv_check_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:isScrollContainer="false"
+        android:overScrollMode="never"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_move_checklist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="120dp"
+            android:layout_height="2dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:background="@drawable/dashed_line_check_list_separator"
+            android:layerType="software" />
+
+        <TextView
+            android:id="@+id/tv_move_checklist_as_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="10dp"
+            android:background="?attr/selectableItemBackground"
+            android:drawableStart="@drawable/act_move_checklist"
+            android:drawableLeft="@drawable/act_move_checklist"
+            android:drawablePadding="14dp"
+            android:gravity="center_vertical"
+            android:paddingStart="4dp"
+            android:paddingLeft="4dp"
+            android:paddingEnd="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/act_move_check_list"
+            android:textColor="@color/white_66p"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</merge>
+

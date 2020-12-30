@@ -1,0 +1,26 @@
+<resources>
+    <style name="popup_window_animation">
+        <item name="android:windowEnterAnimation">@anim/scale_slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/scale_slide_out_bottom</item>
+    </style>
+
+
+
+    <integer name="view_time_float_menu">220</integer>
+    <style name="ViewFloatMenuLB">
+        <item name="android:windowEnterAnimation">@anim/view_float_menu_left_bottom_show</item>
+        <item name="android:windowExitAnimation">@anim/view_float_menu_left_bottom_hide</item>
+    </style>
+    <style name="ViewFloatMenuLT">
+        <item name="android:windowEnterAnimation">@anim/view_float_menu_left_top_show</item>
+        <item name="android:windowExitAnimation">@anim/view_float_menu_left_top_hide</item>
+    </style>
+    <style name="ViewFloatMenuRB">
+        <item name="android:windowEnterAnimation">@anim/view_float_menu_right_bottom_show</item>
+        <item name="android:windowExitAnimation">@anim/view_float_menu_right_bottom_hide</item>
+    </style>
+    <style name="ViewFloatMenuRT">
+        <item name="android:windowEnterAnimation">@anim/view_float_menu_right_top_show</item>
+        <item name="android:windowExitAnimation">@anim/view_float_menu_right_top_hide</item>
+    </style>
+</resources>

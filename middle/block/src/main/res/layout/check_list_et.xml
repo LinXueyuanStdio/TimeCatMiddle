@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/fl_check_list_separator"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/dashed_line_check_list_separator"
+            android:layerType="software" />
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/iv_check_list_state"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/selectable_item_background_light"
+        android:scaleType="centerInside"
+        android:tint="@color/master_icon_view"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/iv_check_list_delete"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/selectable_item_background_light"
+        android:clickable="false"
+        android:contentDescription="@string/cd_delete_checklist_item"
+        android:scaleType="centerInside"
+        android:src="@drawable/delete_image_checklist"
+        android:tint="@color/master_icon_view"
+        android:visibility="invisible"
+         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/iv_check_list_delete"
+        android:layout_toEndOf="@id/iv_check_list_state"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_check_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autoLink="all"
+            android:background="@null"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/master_textColorPrimary"
+            android:textColorHint="@color/master_textColorSecondary"
+            android:textSize="14sp"
+            tools:ignore="TextFields" />
+
+        <ImageView
+            android:id="@+id/iv_check_list_expand_shrink"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:alpha="0.56"
+            android:background="@drawable/selectable_item_background_light"
+            android:scaleType="centerInside"
+            android:src="@drawable/act_add_attachment"
+            android:tint="@color/master_icon_view"
+            android:visibility="gone"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+</RelativeLayout>

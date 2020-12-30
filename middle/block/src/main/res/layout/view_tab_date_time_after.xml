@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tab1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <EditText
+        android:id="@+id/et_time_after"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:selectAllOnFocus="true"
+        android:text="45"
+        android:textCursorDrawable="@null"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_time_as_bt_after"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="6dp"
+        android:layout_toEndOf="@id/et_time_after"
+        android:layout_toRightOf="@id/et_time_after"
+        android:background="?attr/selectableItemBackground"
+        android:drawableEnd="@drawable/ic_arrow_drop_down_white_24dp"
+        android:drawableRight="@drawable/ic_arrow_drop_down_white_24dp"
+        android:gravity="center_vertical"
+        android:paddingStart="4dp"
+        android:paddingLeft="4dp" />
+
+    <TextView
+        android:id="@+id/tv_error_after"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/red"
+        android:textSize="16sp" />
+
+</RelativeLayout>

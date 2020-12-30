@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:paddingStart="10dp"
+    android:paddingTop="7dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="7dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:focusableInTouchMode="false"
+        android:maxLines="3"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="title"
+        android:textColor="@color/master_textColorPrimary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/drag_handle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:focusableInTouchMode="false"
+        android:maxLines="3"
+        android:paddingStart="10dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="3dp"
+        android:text="content"
+        android:textColor="@color/master_textColorSecondary"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/updateTime"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/drag_handle" />
+
+    <TextView
+        android:id="@+id/updateTime"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:focusableInTouchMode="false"
+        android:gravity="start|center_vertical"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="2020 12 1"
+        android:textColor="@color/master_textColorTertiary"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/drag_handle" />
+
+    <ImageView
+        android:id="@+id/drag_handle"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center_vertical"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/drag_mode"
+        android:scaleType="center"
+        android:src="@drawable/ic_drag_handle_24dp"
+        android:tint="@color/master_icon_view"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

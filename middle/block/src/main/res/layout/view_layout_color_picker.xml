@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ViewFlipper
+        android:id="@+id/vf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.larswerkman.holocolorpicker.ColorPicker
+                android:id="@+id/cp_colors_panel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+
+            <com.larswerkman.holocolorpicker.ValueBar
+                android:id="@+id/cp_color_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <com.larswerkman.holocolorpicker.SaturationBar
+                android:id="@+id/cp_color_saturation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+    </ViewFlipper>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_normal">
+
+        <ImageView
+            android:id="@+id/change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/spacing_normal"
+            android:src="@drawable/ic_change_opacity"
+            android:tint="@color/master_icon_view" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/spacing_normal"
+            android:text="@string/confirm"
+            android:textSize="@dimen/text_normal_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

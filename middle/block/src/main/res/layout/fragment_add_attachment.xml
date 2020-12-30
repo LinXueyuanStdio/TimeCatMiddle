@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <TextView
+        android:id="@+id/tv_add_attachment_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="12dp"
+        android:drawableTint="@color/master_icon_view"
+        android:text="@string/act_add_attachment"
+        android:textColor="@color/master_textColorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/tv_take_photo_as_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/selectable_item_background"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/act_take_photo"
+            android:tint="@color/master_icon_view" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawablePadding="16dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="@string/act_take_photo"
+            android:textColor="@color/master_textColorPrimary"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tv_shoot_video_as_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/selectable_item_background"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/act_shoot_video"
+            android:tint="@color/master_icon_view" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawablePadding="16dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="@string/act_shoot_video"
+            android:textColor="@color/master_textColorPrimary"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tv_record_audio_as_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/selectable_item_background"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/act_record_audio"
+            android:tint="@color/master_icon_view" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawablePadding="16dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="@string/act_record_audio"
+            android:textColor="@color/master_textColorPrimary"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tv_choose_media_files_as_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/selectable_item_background"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/act_choose_media_files"
+            android:tint="@color/master_icon_view" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawablePadding="16dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="@string/act_choose_media_files"
+            android:textColor="@color/master_textColorPrimary"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

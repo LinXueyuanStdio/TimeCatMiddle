@@ -1,0 +1,149 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <!--attachment-->
+    <string name="images">image</string>
+    <string name="videos">video</string>
+    <string name="audios">audio</string>
+
+    <!--checklist-->
+    <string name="some_checklist_items_finished">%1$d items finished</string>
+
+    <!--file-->
+    <string name="file_path">Path</string>
+    <string name="file_path_not_existed">Unknown Corner</string>
+    <string name="file_last_modify_time">File Last Modified Time</string>
+
+    <string name="image_size">Image Size</string>
+    <string name="image_create_time">Image Create Time</string>
+
+    <string name="video_size">Video Size</string>
+    <string name="video_duration">Video Duration</string>
+    <string name="video_create_time">Video Create Time</string>
+
+    <string name="audio_bitrate">Bit Rate</string>
+    <string name="audio_duration">Audio Duration</string>
+    <string name="audio_sample_rate">Sample Rate</string>
+
+    <!--group ui-->
+    <string-array name="languages" tools:ignore="MissingTranslation">
+        <item>@string/follow_system_settings</item>
+        <item>简体中文</item>
+        <item>繁體中文(香港)</item>
+        <item>繁體中文(台灣)</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="language_codes" tools:ignore="MissingTranslation">
+        <item>follow system_</item>
+        <item>zh_cn</item>
+        <item>zh_hk</item>
+        <item>zh_tw</item>
+        <item>en_</item>
+    </string-array>
+    <string name="follow_system_settings">Follow System</string>
+    <string name="error_permission_denied">Permission not granted. Cannot continue.</string>
+    <!--ChooserDialogFragment-->
+    <string name="cd_chosen_item">Chosen,</string>
+    <string name="cd_not_chosen_item">Not Chosen,</string>
+
+    <string name="month_day">day</string>
+
+
+    <!--AudioRecordDialogFragment-->
+    <string name="input_file_name">Please enter file name</string>
+
+    <!--AttachmentInfoDialogFragment-->
+    <string name="attachment_info_title">Attachment Detail</string>
+    <string name="error_activity_not_found">Application not found to continue operation</string>
+
+    <!--video attachment-->
+    <string name="cd_play_video_attachment">Play Video</string>
+
+    <!--audio attachment-->
+    <string name="cd_play_audio_attachment">Play audio</string>
+    <string name="cd_pause_play_audio_attachment">Pause playing audio</string>
+    <string name="cd_stop_play_audio_attachment">Stop playing audio</string>
+    <string name="cd_delete_audio_attachment">Delete this audio attachment</string>
+    <string name="cd_audio_attachment_info">Audio file details</string>
+
+    <!--record audio-->
+    <string name="cd_start_record_audio">Start recording</string>
+    <string name="cd_stop_record_audio">Stop recording</string>
+    <string name="cd_save_recorded_audio_file">Save recorded file and back</string>
+    <string name="cd_re_recording_audio">re-record</string>
+    <string name="cd_cancel_recording_audio">cancel record</string>
+
+    <string name="cd_delete_image_attachment">delete this image attachment</string>
+    <string name="cd_delete_video_attachment">delete this video attachment</string>
+
+    <string name="cd_image_attachment">图片类附件</string>
+    <string name="cd_video_attachment">视频附件</string>
+    <string name="cd_audio_attachment">音频附件</string>
+
+    <!--DetailActivity attachment-->
+    <string name="act_take_photo">Take photo</string>
+    <string name="act_shoot_video">Shoot video</string>
+    <string name="act_record_audio">Record audio</string>
+    <string name="act_choose_media_files">Choose media files</string>
+    <string name="act_show_attachment_info">Check Attachment Detail</string>
+    <string name="act_delete_attachment">Delete this attachment</string>
+
+    <!--DetailActivity create-->
+    <string name="act_add_attachment">Add attachment</string>
+
+    <!--DetailActivity all-->
+    <string name="act_copy_content">Copy content</string>
+
+    <!--checklist item-->
+    <string name="cd_checklist_unfinished_item">Unfinished item</string>
+    <string name="cd_checklist_finished_item">Finished item</string>
+    <string name="cd_checklist_more_items">More checklist items</string>
+    <string name="cd_checklist_unfinished_item_clickable">Unfinished item, click to finish</string>
+    <string name="cd_checklist_finished_item_clickable">Finished item, click to unfinish</string>
+    <string name="cd_checklist_move">click and drag to move this item</string>
+    <string name="cd_checklist_expand_finished_items">Expand finished checklist items</string>
+    <string name="cd_checklist_shrink_finished_items">Shrink finished checklist items</string>
+    <string name="cd_delete_checklist_item">delete item</string>
+
+    <string name="hint_new_item">new item</string>
+
+    <!--DetailActivity checklist-->
+    <string name="act_move_check_list">Arrange Items</string>
+    <string name="act_back_from_move_checklist"><![CDATA[Finish & Back]]></string>
+
+    <!--DetailActivity-->
+    <string name="hint_title">title</string>
+    <string name="hint_content">记录一下～</string>
+    <string name="act_get_it">Get it</string> <!--used in other places, too-->
+
+
+    <string name="error_unsupported_file_type">Unsupported file type</string>
+    <string name="error_cannot_add_from_network">Cannot add attachment from Internet</string>
+    <string name="new_reminder_time_rec">新的提醒时刻</string>
+    <string name="cd_reminder_time">提醒时刻</string>
+    <string name="goal_should_finish_before">应于%1$s前达成</string>
+    <string name="after">后</string>
+    <!--picker-->
+    <string name="cd_picked">已选中，</string>
+    <string name="cd_unpicked">未选中，</string>
+    <string name="cd_day">号</string>
+
+    <string name="error_complete_time">请完善时刻信息</string>
+    <string name="error_later">请设置为将来的某一时刻</string>
+    <string name="error_number_too_big">过大的输入，你一定是在逗我</string>
+    <string name="error_too_late">那是我难以触及的永恒</string>
+    <string name="error_different">请设置不一样的时间</string>
+
+    <string name="remind_me">提醒我于</string>
+    <string name="finish_me">可完成于</string>
+    <!--Reminder-->
+    <string name="reminder_expired">已过期</string>
+    <string name="reminder_needless">已无需提醒</string>
+    <string name="reminder_reminded">已提醒</string>
+    <string name="reminder_unavailable">已失效</string>
+
+    <string name="no_more_load_retry">没有更多喵～\n再刷新试试～</string>
+    <string name="endless_disabled">没有更多喵～</string>
+    <string name="endless_cancel">已取消</string>
+    <string name="endless_error">加载错误</string>
+</resources>

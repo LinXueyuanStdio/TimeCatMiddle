@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="100dp"
+        android:elevation="5dp"
+        app:cardBackgroundColor="@color/master_background"
+        app:cardCornerRadius="4dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:clipToPadding="false"
+            android:paddingStart="10dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="10dp" />
+
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_margin="10dp"
+            android:background="@drawable/shape_gradient_bg"
+            android:contentDescription="@string/back"
+            android:padding="10dp"
+            android:src="@drawable/ic_back" />
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

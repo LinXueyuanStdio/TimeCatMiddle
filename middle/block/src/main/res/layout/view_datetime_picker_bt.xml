@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bt_pick_after_time"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@drawable/selectable_item_background"
+    android:gravity="center_vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:textColor="@color/master_textColorPrimary"
+    android:textSize="14sp" />

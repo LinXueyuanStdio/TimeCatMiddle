@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_xsmall">
+
+            <ImageView
+                android:id="@+id/searchBackButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="@string/back"
+                android:padding="6dp"
+                android:src="@drawable/ic_arrow_back_white_24dp"
+                android:tint="@color/master_icon_view" />
+
+            <EditText
+                android:id="@+id/searchBox"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="@string/search"
+                android:textColor="@color/master_textColorPrimary"
+                android:textColorHint="@color/master_textColorTertiary"
+                android:textSize="@dimen/font_size_large" />
+
+            <ImageView
+                android:id="@+id/searchCloseIcon"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/close"
+                android:padding="6dp"
+                android:src="@drawable/ic_close"
+                android:tint="@color/master_icon_view" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.75dp"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:background="@color/master_textBackground" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/tagsFlexBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_xsmall"
+            app:alignContent="stretch"
+            app:alignItems="stretch"
+            app:flexWrap="wrap" />
+
+    </LinearLayout>
+</merge>

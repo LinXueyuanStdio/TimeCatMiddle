@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.gturedi.views.StatefulLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_stateful"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:stfAnimationEnabled="true"
+    app:stfInAnimation="@android:anim/fade_in"
+    app:stfOutAnimation="@android:anim/fade_out">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/tint_statusbar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:id="@+id/appBarLayout"
+                android:layout_height="wrap_content"
+                android:background="@color/master_background"
+                app:elevation="0dp">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapseContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:background="@color/transparent"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="@color/master_background"
+                    app:expandedTitleMarginEnd="64dp"
+                    app:expandedTitleMarginStart="48dp"
+                    app:toolbarId="@id/toolbar"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                    app:titleEnabled="false">
+                    <!--<ImageView-->
+                    <!--    android:id="@+id/main.backdrop"-->
+                    <!--    android:layout_width="match_parent"-->
+                    <!--    android:layout_height="match_parent"-->
+                    <!--    android:fitsSystemWindows="true"-->
+                    <!--    android:scaleType="centerCrop"-->
+                    <!--    app:layout_collapseMode="parallax"-->
+                    <!--    />-->
+                    <!--TODO 示例 注意layout_collapseMode-->
+                    <com.timecat.page.base.view.BlurringToolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:theme="?android:toolbarStyle"
+                        app:layout_collapseMode="pin"
+                        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                    </com.timecat.page.base.view.BlurringToolbar>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/tab_height"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/master_colorBackground"
+                    app:tabIndicatorColor="@color/master_colorPrimary"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabIndicatorHeight="4dp"
+                    app:tabSelectedTextColor="@color/master_colorPrimary"
+                    app:tabTextColor="@color/master_textColorSecondary" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
+</com.gturedi.views.StatefulLayout>

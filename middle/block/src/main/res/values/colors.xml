@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="view_colorBg">#f5f5f5</color>
+    <color name="black_54">#6D6D6D</color>
+
+    <color name="control_highlight_light">#66FFFFFF</color>
+
+    <color name="textColorCheckedMd">#88000000</color>
+    <color name="textColorDateMd">#66000000</color>
+    <color name="textColorHintMd">#44000000</color>
+    <color name="view_conversation_bg">@color/transparent</color>
+    <color name="view_conversation_top_bg">#fff8f8f8</color>
+    <color name="view_conversation_press_bg">#E8E8E8</color>
+    <color name="im_msg_send_bg">@color/vm_green_87</color>
+    <color name="im_msg_receive_bg">@color/vm_gray_white_87</color>
+    <array name="thing">
+        <item>@color/blue_grey_500</item>
+        <item>@color/my_cyan</item>
+        <item>@color/blue_grey_deep_blue</item>
+        <item>@color/blue_grey_deep_grey</item>
+        <item>@color/brown</item>
+        <item>@color/blue_deep</item>
+        <item>@color/pine_green</item>
+        <item>@color/my_purple</item>
+        <item>@color/elegant_orange</item>
+        <item>@color/Aein_red</item>
+    </array>
+    <color name="my_cyan">#00B1C6</color>
+    <color name="pine_green">#21A675</color>
+    <color name="blue_grey_500">#607D8B</color>
+    <color name="blue_grey_deep_grey">#364656</color>
+    <color name="blue_grey_deep_blue">#366686</color>
+    <color name="blue_deep">#166096</color>
+    <color name="brown">#96766B</color>
+    <color name="my_purple">#665696</color>
+    <color name="elegant_orange">#D28656</color> <!-- Don't forget #D96D37 -->
+    <color name="Aein_red">#AE6060</color>
+
+    <array name="thing_dark"> <!-- overlap a 36% alpha black block -->
+        <item>#526B77</item> <!-- blue_grey_500 -->
+        <item>#0098AA</item> <!-- my_cyan -->
+        <item>#2E5873</item> <!-- blue_grey_deep_blue -->
+        <item>#2E3C4A</item> <!-- blue_grey_deep_grey -->
+        <item>#81655C</item> <!-- brown -->
+        <item>#135281</item> <!-- blue_deep -->
+        <item>#1C8F64</item> <!-- pine_green -->
+        <item>#584A81</item> <!-- my_purple -->
+        <item>#865637</item> <!-- elegant_orange -->
+        <item>#6F3D3D</item> <!-- Aein_red -->
+    </array>
+
+    <array name="thing_light"> <!-- overlap a 66% alpha white block -->
+        <item>#CAD2D5</item> <!-- blue_grey_500 -->
+        <item>#B2DFE4</item> <!-- my_cyan -->
+        <item>#C0CCD4</item> <!-- blue_grey_deep_blue -->
+        <item>#C0C4C8</item> <!-- blue_grey_deep_grey -->
+        <item>#D8D0CD</item> <!-- brown -->
+        <item>#B8CAD8</item> <!-- blue_deep -->
+        <item>#C6E8DB</item> <!-- pine_green -->
+        <item>#D7D3E4</item> <!-- my_purple -->
+        <item>#F0D6C5</item> <!-- elegant_orange -->
+        <item>#E3C9C9</item> <!-- Aein_red -->
+    </array>
+
+    <color name="bg_unpicked">#E6E6E6</color>
+
+</resources>

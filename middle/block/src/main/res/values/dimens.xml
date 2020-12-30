@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="card_audio_attachment_margin">4dp</dimen>
+    <dimen name="iv_fab_audio_margin">8dp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="card_min_height">40.0dip</dimen>
+</resources>

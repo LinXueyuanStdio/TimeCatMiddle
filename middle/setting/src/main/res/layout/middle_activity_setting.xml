@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/container_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.timecat.page.base.view.BlurringToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:contentInsetStart="12dp" />
+
+        <com.gturedi.views.StatefulLayout
+            android:id="@+id/ll_stateful"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            app:stfAnimationEnabled="true"
+            app:stfInAnimation="@android:anim/fade_in"
+            app:stfOutAnimation="@android:anim/fade_out">
+
+            <ScrollView
+                android:id="@+id/scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/trans"
+                android:clipToPadding="false">
+
+                <LinearLayout
+                    android:id="@+id/container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:background="@color/trans"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" />
+            </ScrollView>
+        </com.gturedi.views.StatefulLayout>
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_audio_attachment"
+    android:layout_width="wrap_content"
+    android:layout_height="24dp"
+    android:layout_margin="@dimen/card_audio_attachment_margin"
+    android:elevation="1dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="4dp">
+
+    <com.timecat.middle.block.view.BarVisualizer
+        android:id="@+id/voice_visualizer"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_audio_size"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:padding="2dp"
+            android:text="12:00"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/iv_card_audio_first"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/cd_play_audio_attachment"
+            android:padding="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/act_play"
+            android:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/iv_card_audio_second"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/cd_delete_audio_attachment"
+            android:padding="2dp"
+            android:scaleType="centerInside"
+            android:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/iv_card_audio_third"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/cd_audio_attachment_info"
+            android:padding="2dp"
+            android:scaleType="centerInside"
+            android:tint="@color/black" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

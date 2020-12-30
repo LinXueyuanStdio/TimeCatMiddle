@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.timecat.page.base.view.BlurringToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:contentInsetStart="12dp" />
+
+    <com.gturedi.views.StatefulLayout
+        android:id="@+id/ll_stateful"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        app:stfAnimationEnabled="true"
+        app:stfInAnimation="@android:anim/fade_in"
+        app:stfOutAnimation="@android:anim/fade_out">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.gturedi.views.StatefulLayout>
+
+    <TextView
+        android:id="@+id/tv_delete_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/red_400"
+        android:drawableTop="@drawable/picture_icon_delete"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="@string/app_drag_delete"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+</RelativeLayout>
