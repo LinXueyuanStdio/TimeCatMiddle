@@ -1,7 +1,7 @@
 include ':app'
 include ':middle:block'
-include ':middle:image'
-include ':middle:setting'
+include ':middle:selector'
+include ':middle:form'
 
 rootProject.name = "TimeCatMiddle"
 
