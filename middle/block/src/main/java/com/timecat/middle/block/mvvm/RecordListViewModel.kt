@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.timecat.data.room.RoomClient
 import com.timecat.data.room.record.RoomRecord
-import com.timecat.identity.data.base.*
-import com.timecat.identity.data.block.type.BLOCK_CONTAINER
-import com.timecat.identity.data.block.type.BLOCK_CONVERSATION
+import com.timecat.identity.data.base.GOAL
+import com.timecat.identity.data.base.HABIT
+import com.timecat.identity.data.base.REMINDER
 import com.timecat.identity.data.block.type.BLOCK_LINK
 import com.timecat.identity.data.block.type.BLOCK_RECORD
 import kotlinx.coroutines.Dispatchers
@@ -42,34 +42,16 @@ open class RecordListViewModel(mApplication: Application) : AndroidViewModel(mAp
         }
     }
 
-    fun databaseReload(context: CoroutineContext, parent: String? = null) {
+    protected fun databaseReload(context: CoroutineContext, parent: String = "") {
         GlobalScope.launch(context) {
-            val items = RoomClient.recordDao().loadFor(
-                parent,
-                listOf(
-                    BLOCK_RECORD,
-//                    BLOCK_DATABASE,
-//                    BLOCK_NOVEL,
-//                    BLOCK_ACCOUNT,
-                    BLOCK_CONTAINER,
-                    BLOCK_CONVERSATION
-//                    BLOCK_BOOK,
-//                    BLOCK_FOCUS,
-//                    BLOCK_FOLDER,
-//                    BLOCK_SCRIPT,
-//                    BLOCK_PLUGIN
-                ),
-                TASK_MODE_INIT,
-                TASK_MODE_FALSE
-            )
-
+            val items = RoomClient.recordDao().getAllChildren(parent)
             allData.postValue(items)
         }
     }
 
     init {
         //初始化 allRecordItems
-        databaseReload(Dispatchers.IO)
+        databaseReload(Dispatchers.IO, "")
     }
 
 }
