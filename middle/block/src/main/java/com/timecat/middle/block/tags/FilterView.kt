@@ -12,9 +12,7 @@ import com.google.android.material.chip.Chip
 import com.timecat.component.identity.Attr
 import com.timecat.data.room.TimeCatRoomDatabase
 import com.timecat.data.room.tag.Tag
-import com.timecat.identity.data.block.type.BLOCK_CONTAINER
-import com.timecat.identity.data.block.type.BLOCK_CONVERSATION
-import com.timecat.identity.data.block.type.BLOCK_RECORD
+import com.timecat.identity.data.block.type.*
 import com.timecat.middle.block.R
 import com.timecat.middle.block.view.ColorView
 import kotlin.math.min
@@ -63,10 +61,7 @@ class FilterView(
     }
 
     private fun setTags() {
-        val length = tags.size
-        tags.toList()
-            .subList(0, min(length, 6))
-            .forEach {
+        tags.forEach {
                 val tag = it
                 val tagView = View.inflate(context, R.layout.layout_flexbox_tag_item, null) as View
                 val text = tagView.findViewById<TextView>(R.id.tag_text)
@@ -85,10 +80,7 @@ class FilterView(
     }
 
     private fun setColors() {
-        val length = colors.size
-        colors.toList()
-            .subList(0, min(length, 6))
-            .forEach {
+        colors.forEach {
                 val color = it
                 val colorView = ColorView(context, R.layout.layout_color)
                 colorView.setColor(color, state.colors.contains(color))
@@ -100,20 +92,25 @@ class FilterView(
     }
 
     private fun setTypes() {
-        val length = types.size
-        types.toList()
-            .subList(0, min(length, 6))
-            .forEach { type ->
+        types.forEach { type ->
                 val subTypeName = when (type) {
                     BLOCK_CONTAINER -> "文件夹"
                     BLOCK_RECORD -> "时间笔记"
                     BLOCK_CONVERSATION -> "对话笔记"
+                    BLOCK_LINK -> "指针"
+                    BLOCK_BUTTON -> "按钮"
+                    BLOCK_MEDIA -> "媒体块"
+                    BLOCK_PATH -> "传送门"
                     else -> "未知类型"
                 }
                 val subTypeIcon = when (type) {
                     BLOCK_CONTAINER -> R.drawable.ic_collect
                     BLOCK_RECORD -> R.drawable.every_drawer_note
                     BLOCK_CONVERSATION -> R.drawable.ic_comment
+                    BLOCK_LINK -> R.drawable.ic_arrow_right
+                    BLOCK_BUTTON -> R.drawable.ic_toolbox_24dp
+                    BLOCK_MEDIA -> R.drawable.ic_audio_white_24dp
+                    BLOCK_PATH -> R.drawable.ic_pin
                     else -> R.drawable.every_drawer_note
                 }
                 val c = Chip(context)

@@ -1,6 +1,7 @@
 package com.timecat.middle.block.service
 
 import androidx.appcompat.app.AppCompatActivity
+import com.gturedi.views.StatefulLayout
 import com.timecat.layout.ui.entity.BaseItem
 import eu.davidea.flexibleadapter.helpers.ActionModeHelper
 
@@ -16,4 +17,5 @@ interface HomeService {
     fun reload()
     fun reload(data: List<BaseItem<*>>)
     fun navigateTo(name: String, uuid: String, type: Int = -1)
+    fun statefulView(): StatefulLayout?
 }
