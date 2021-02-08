@@ -163,7 +163,7 @@ class MaterialForm(val windowContext: Context, val container: ViewGroup) {
     //endregion
 
     //region 图片
-    fun Image(title: String, icon: String, onSelectImage:(item: ImageItem) -> Unit) = ImageItem(windowContext).apply {
+    fun Image(title: String, icon: String, onSelectImage: (item: ImageItem) -> Unit) = ImageItem(windowContext).apply {
         this.title = title
         this.setImage(icon)
         onClick(onSelectImage)
@@ -171,7 +171,7 @@ class MaterialForm(val windowContext: Context, val container: ViewGroup) {
         container.addView(it)
     }
 
-    fun Image(title: String, onSelectImage:(item: ImageItem) -> Unit) = ImageItem(windowContext).apply {
+    fun Image(title: String, onSelectImage: (item: ImageItem) -> Unit) = ImageItem(windowContext).apply {
         this.title = title
         this.setImage("R.drawable.ic_launcher")
         onClick(onSelectImage)
@@ -181,15 +181,16 @@ class MaterialForm(val windowContext: Context, val container: ViewGroup) {
     //endregion
 
     //region DSL
-    fun H1(title: String)=Head(title, ViewUtil.dp2px(20f))
-    fun H2(title: String)=Head(title, ViewUtil.dp2px(18f))
-    fun H3(title: String)=Head(title, ViewUtil.dp2px(16f))
-    fun H4(title: String)=Head(title, ViewUtil.dp2px(14f))
-    fun H5(title: String)=Head(title, ViewUtil.dp2px(13f))
-    fun H6(title: String)=Head(title, ViewUtil.dp2px(12f))
+    fun H1(title: String) = Head(title, ViewUtil.dp2px(20f))
+    fun H2(title: String) = Head(title, ViewUtil.dp2px(18f))
+    fun H3(title: String) = Head(title, ViewUtil.dp2px(16f))
+    fun H4(title: String) = Head(title, ViewUtil.dp2px(14f))
+    fun H5(title: String) = Head(title, ViewUtil.dp2px(13f))
+    fun H6(title: String) = Head(title, ViewUtil.dp2px(12f))
 
     fun Head(title: String, textSize: Int): HeadItem = HeadItem(windowContext).apply {
         setText(title)
+        setTextSize(textSize.toFloat())
     }.also {
         container.addView(it)
     }

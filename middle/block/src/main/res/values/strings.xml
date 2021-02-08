@@ -142,7 +142,7 @@
     <string name="reminder_reminded">已提醒</string>
     <string name="reminder_unavailable">已失效</string>
 
-    <string name="no_more_load_retry">没有更多喵～\n再刷新试试～</string>
+    <string name="no_more_load_retry">～喵喵喵～</string>
     <string name="endless_disabled">没有更多喵～</string>
     <string name="endless_cancel">已取消</string>
     <string name="endless_error">加载错误</string>
