@@ -8,7 +8,7 @@
     <color name="textColorCheckedMd">#88000000</color>
     <color name="textColorDateMd">#66000000</color>
     <color name="textColorHintMd">#44000000</color>
-    <color name="view_conversation_bg">@color/transparent</color>
+    <color name="view_conversation_bg">#01000000</color>
     <color name="view_conversation_top_bg">#30f8f8f8</color>
     <color name="view_conversation_press_bg">#70E8E8E8</color>
     <color name="im_msg_send_bg">@color/vm_green_87</color>

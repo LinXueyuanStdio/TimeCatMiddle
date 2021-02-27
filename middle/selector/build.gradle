@@ -8,7 +8,6 @@ android {
 }
 
 dependencies {
-    api rootProject.ext.timecat["component-SelfRouter"]
     api rootProject.ext.timecat["component-SelfImage"]
     api rootProject.ext.timecat["component-CommonStatic"]
     api rootProject.ext.timecat["component-CommonBase"]

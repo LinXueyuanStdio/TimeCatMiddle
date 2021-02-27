@@ -12,9 +12,25 @@ import com.timecat.layout.ui.business.setting.NextItem
  * @description Material 风格的表单
  * @usage null
  */
-fun ViewGroup.Next(
+fun ViewGroup.PathNext(
     title: String,
     path: String
 ): NextItem = Next(title) {
+    NAV.go(context, path)
+}
+
+fun ViewGroup.PathNext(
+    title: String,
+    hint: String,
+    message: String,
+    path: String
+): NextItem = Next(title, hint = hint, message = message) {
+    NAV.go(context, path)
+}
+fun ViewGroup.PathNext(
+    title: String,
+    hint: String,
+    path: String
+): NextItem = Next(title, hint = hint) {
     NAV.go(context, path)
 }
