@@ -18,7 +18,7 @@ enum class TypeState(val title: String, val type: Int, val subType: Int) {
     ContainerRecord("记录文件夹", BLOCK_CONTAINER, CONTAINER_BLOCK_RECORD),
     ContainerDatabase("数据库文件夹", BLOCK_CONTAINER, CONTAINER_BLOCK_DATABASE),
     ContainerNovel("小说文件夹", BLOCK_CONTAINER, CONTAINER_BLOCK_NOVEL),
-    ContainerAccount("用户文件夹", BLOCK_CONTAINER, CONTAINER_BLOCK_ACCOUNT),
+    ContainerAccount("Markdown", BLOCK_CONTAINER, CONTAINER_BLOCK_MARKDOWN),
     ContainerMessage("消息文件夹", BLOCK_CONTAINER, CONTAINER_BLOCK_MESSAGE),
     ContainerAbout("公告文件夹", BLOCK_CONTAINER, CONTAINER_BLOCK_ABOUT),
     ContainerTag("标签文件夹", BLOCK_CONTAINER, CONTAINER_BLOCK_TAG),
