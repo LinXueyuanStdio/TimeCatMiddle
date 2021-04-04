@@ -3,7 +3,10 @@ package com.timecat.middle.block.service
 import android.content.Context
 import android.view.View
 import com.gturedi.views.StatefulLayout
+import com.jess.arms.base.App
 import com.same.lib.core.BasePage
+import com.timecat.data.room.AppRoomDatabase
+import com.timecat.data.room.TimeCatRoomDatabase
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.layout.ui.entity.BaseItem
@@ -58,6 +61,8 @@ interface ItemActionListener {
 
 interface ItemGetterListener {
     fun adapter(): BaseAdapter
+    fun roomClient(): TimeCatRoomDatabase
+    fun appDatabase(): AppRoomDatabase
     fun popupParentView(): View
     fun habitService(): HabitService?
     fun changeReminderService(): ChangeReminderService?
