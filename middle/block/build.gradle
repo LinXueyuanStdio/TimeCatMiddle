@@ -25,6 +25,7 @@ dependencies {
 
     api rootProject.ext.timecat["component-CommonUI"]
     api rootProject.ext.timecat["component-CommonBase"]
+    api rootProject.ext.timecat["MView-same"]
 
 
     api rootProject.ext.dependencies["kotlin-stdlib"]
