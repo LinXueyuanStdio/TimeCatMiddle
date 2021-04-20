@@ -43,6 +43,7 @@ interface ItemActionListener {
     fun openPage(page: BasePage, removeLast: Boolean)
     fun openPage(page: BasePage, removeLast: Boolean, forceWithoutAnimation: Boolean)
     fun loadHeader(headers: List<BaseItem<*>>)
+    fun navigateTo(name: String, uuid: String, type: Int = -1)
 
     fun setTop(isTop: Boolean)
     fun changeShowType(item: BaseRecordItem<*>, showType: Int)
