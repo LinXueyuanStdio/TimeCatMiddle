@@ -1,9 +1,7 @@
 package com.timecat.middle.block.service
 
-import android.content.Context
 import android.view.View
 import com.gturedi.views.StatefulLayout
-import com.jess.arms.base.App
 import com.same.lib.core.BasePage
 import com.timecat.data.room.AppRoomDatabase
 import com.timecat.data.room.TimeCatRoomDatabase
@@ -42,8 +40,9 @@ interface ItemActionListener {
     fun addAction(action: ThingAction)
     fun showMore(record: RoomRecord)
     fun openPage(page: BasePage)
-    fun openPage(page: BasePage, removeLast:Boolean)
-    fun openPage(page: BasePage, removeLast:Boolean, forceWithoutAnimation:Boolean)
+    fun openPage(page: BasePage, removeLast: Boolean)
+    fun openPage(page: BasePage, removeLast: Boolean, forceWithoutAnimation: Boolean)
+    fun loadHeader(headers: List<BaseItem<*>>)
 
     fun setTop(isTop: Boolean)
     fun changeShowType(item: BaseRecordItem<*>, showType: Int)
@@ -62,6 +61,7 @@ interface ItemActionListener {
 interface ItemGetterListener {
     fun adapter(): BaseAdapter
     fun roomClient(): TimeCatRoomDatabase
+    fun roomClient(url: String): TimeCatRoomDatabase
     fun appDatabase(): AppRoomDatabase
     fun popupParentView(): View
     fun habitService(): HabitService?
