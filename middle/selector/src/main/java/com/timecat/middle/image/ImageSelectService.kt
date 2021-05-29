@@ -12,6 +12,7 @@ import android.app.Activity
 interface ImageSelectService {
     fun selectAvatar(activity: Activity, onSuccess: (String) -> Unit)
     fun selectImage(activity: Activity, cropId: Int, onSuccess: (String) -> Unit)
+    fun selectImage(activity: Activity, onSuccess: (String) -> Unit)
 
     //拍照
     fun takeOnePhoto(activity: Activity, cropId: Int, onSuccess: (String) -> Unit)
