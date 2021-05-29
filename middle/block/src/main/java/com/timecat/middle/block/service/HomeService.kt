@@ -39,6 +39,14 @@ interface ItemActionListener {
     fun onLongClick(selectPosition: Int)
     fun addAction(action: ThingAction)
     fun showMore(record: RoomRecord)
+    /**
+     * 打开图片 url
+     * record是url的原始记录
+     */
+    fun showImage(url: String, record: RoomRecord)
+    fun showAudio(url: String, record: RoomRecord)
+    fun showVideo(url: String, record: RoomRecord)
+    fun showUrl(url: String, record: RoomRecord)
     fun openPage(page: BasePage)
     fun openPage(page: BasePage, removeLast: Boolean)
     fun openPage(page: BasePage, removeLast: Boolean, forceWithoutAnimation: Boolean)
