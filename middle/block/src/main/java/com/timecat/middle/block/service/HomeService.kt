@@ -53,16 +53,16 @@ interface ItemActionListener {
     fun loadHeader(headers: List<BaseItem<*>>)
     fun navigateTo(name: String, uuid: String, type: Int = -1)
 
-    fun setTop(isTop: Boolean)
-    fun changeShowType(item: BaseRecordItem<*>, showType: Int)
-    fun changeType(item: BaseRecordItem<*>, type: Int, subType: Int)
-    fun addNewItemToEndOfList(record: RoomRecord)
-    fun insert(position: Int, record: RoomRecord)
-    fun duplicate(item: BaseRecordItem<*>): Boolean
-    fun getSortType(): Int
-    fun setSortType(type: Int)
+    fun changeShowType(item: BaseRecordItem<*>, showType: Int, listener: ItemCommonListener)
+    fun changeType(item: BaseRecordItem<*>, type: Int, subType: Int, listener: ItemCommonListener)
+    fun addNewItemToEndOfList(record: RoomRecord, listener: ItemCommonListener)
+    fun insert(position: Int, record: RoomRecord, listener: ItemCommonListener)
+
     fun configAdapter(enableEndless: Boolean, endlessPageSize: Int = 512, endlessScrollThreshold: Int = 4, noMoreItem: BaseItem<*>? = null)
 
+    fun getSortType(): Int
+    fun setSortType(type: Int)
+    fun setTop(isTop: Boolean)
     fun focus(item: IFlexible<*>)
     fun close()
 }
