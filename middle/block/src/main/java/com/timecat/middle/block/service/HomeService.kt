@@ -36,8 +36,6 @@ interface ItemCommonListener :
 
 interface ItemActionListener {
     fun loadFor(record: RoomRecord)
-    fun onLongClick(selectPosition: Int)
-    fun addAction(action: ThingAction)
     fun showMore(record: RoomRecord)
     /**
      * 打开图片 url
@@ -53,18 +51,20 @@ interface ItemActionListener {
     fun loadHeader(headers: List<BaseItem<*>>)
     fun navigateTo(name: String, uuid: String, type: Int = -1)
 
+    fun configAdapter(enableEndless: Boolean, endlessPageSize: Int = 512, endlessScrollThreshold: Int = 4, noMoreItem: BaseItem<*>? = null)
+    fun onLongClick(selectPosition: Int)
+    fun addAction(action: ThingAction)
+    fun setTop(isTop: Boolean)
+    fun getSortType(): Int
+    fun focus(item: IFlexible<*>)
+    fun close()
+
     fun changeShowType(item: BaseRecordItem<*>, showType: Int, listener: ItemCommonListener)
     fun changeType(item: BaseRecordItem<*>, type: Int, subType: Int, listener: ItemCommonListener)
     fun addNewItemToEndOfList(record: RoomRecord, listener: ItemCommonListener)
     fun insert(position: Int, record: RoomRecord, listener: ItemCommonListener)
-
-    fun configAdapter(enableEndless: Boolean, endlessPageSize: Int = 512, endlessScrollThreshold: Int = 4, noMoreItem: BaseItem<*>? = null)
-
-    fun getSortType(): Int
-    fun setSortType(type: Int)
-    fun setTop(isTop: Boolean)
-    fun focus(item: IFlexible<*>)
-    fun close()
+    fun setSortType(type: Int, listener: ItemCommonListener)
+    fun setSortAsc(ascending: Boolean, listener: ItemCommonListener)
 }
 
 interface ItemGetterListener {
