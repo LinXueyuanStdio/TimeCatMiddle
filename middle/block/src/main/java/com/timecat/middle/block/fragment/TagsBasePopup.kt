@@ -22,9 +22,7 @@ import razerdp.basepopup.BasePopupWindow
  */
 class TagsBasePopup(
     context: Context
-) : BasePopupWindow(
-    context, MATCH_PARENT, WRAP_CONTENT, true
-) {
+) : BasePopupWindow(context, MATCH_PARENT, WRAP_CONTENT) {
     interface Listener : TagsAdapter.Listener {
         fun onManageTags()
     }
@@ -41,11 +39,10 @@ class TagsBasePopup(
     ) : this(context) {
         this.listener = listener
         this.items = items
-        delayInit()
+        setContentView(R.layout.view_base_popup_tags)
     }
 
-    override fun onCreateContentView(): View {
-        val view: View = createPopupById(R.layout.view_base_popup_tags)
+    override fun onViewCreated(view: View) {
         manage_tags = view.findViewById(R.id.manage_tags)
         rv = view.findViewById(R.id.rv)
         rv.layoutManager = LinearLayoutManager(context)
@@ -57,7 +54,6 @@ class TagsBasePopup(
         manage_tags.setOnClickListener { listener.onManageTags() }
         val back: View = view.findViewById(R.id.back)
         back.setOnClickListener { dismiss() }
-        return view
     }
 
     data class TagItem(

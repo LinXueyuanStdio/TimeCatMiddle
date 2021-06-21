@@ -26,15 +26,15 @@ import java.util.*
  * @description null
  * @usage null
  */
-class SpeechRecognitionBasePopup(context: Context) : BasePopupWindow(
-    context, MATCH_PARENT, WRAP_CONTENT, true
-) {
+class SpeechRecognitionBasePopup(
+    context: Context
+) : BasePopupWindow(context, MATCH_PARENT, WRAP_CONTENT) {
     constructor(
         context: Context,
         listener: Listener
     ) : this(context) {
         this.listener = listener
-        delayInit()
+        setContentView(R.layout.view_popup_speech_recognition)
     }
 
     interface Listener {
@@ -56,9 +56,7 @@ class SpeechRecognitionBasePopup(context: Context) : BasePopupWindow(
     private lateinit var listener: Listener
     private lateinit var path: String
 
-    override fun onCreateContentView(): View {
-
-        val view: View = createPopupById(R.layout.view_popup_speech_recognition)
+    override fun onViewCreated(view: View) {
         text = view.findViewById(R.id.text)
         waveView = view.findViewById(R.id.audioWave)
         path = listener.path()
@@ -78,9 +76,7 @@ class SpeechRecognitionBasePopup(context: Context) : BasePopupWindow(
                 safeDismiss()
             }
         }
-        return view
     }
-
 
     /**
      * 初始化监听器。

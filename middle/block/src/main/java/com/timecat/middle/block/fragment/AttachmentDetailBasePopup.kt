@@ -18,27 +18,26 @@ import razerdp.basepopup.BasePopupWindow
  * @description null
  * @usage null
  */
-class AttachmentDetailBasePopup(context: Context) : BasePopupWindow(
-    context, MATCH_PARENT, WRAP_CONTENT, true
-) {
+class AttachmentDetailBasePopup(
+    context: Context
+) : BasePopupWindow(context, MATCH_PARENT, WRAP_CONTENT) {
 
     constructor(
         context: Context,
         items: MutableList<Pair<String, String>>
     ) : this(context) {
         adapter = Adapter(items)
-        delayInit()
+        setContentView(R.layout.view_base_popup_attachment_detail)
     }
 
     private lateinit var adapter: Adapter
-    override fun onCreateContentView(): View {
-        val view: View = createPopupById(R.layout.view_base_popup_attachment_detail)
+
+    override fun onViewCreated(view: View) {
         val confirm: TextView = view.findViewById(R.id.tv_confirm_as_bt_attachment_info)
         confirm.setOnClickListener { dismiss() }
         val recyclerView: RecyclerView = view.findViewById(R.id.rv_attachment_info)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         recyclerView.adapter = adapter
-        return view
     }
 
     internal class Adapter(items: MutableList<Pair<String, String>>) :

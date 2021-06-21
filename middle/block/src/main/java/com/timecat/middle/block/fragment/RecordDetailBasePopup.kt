@@ -24,7 +24,7 @@ import razerdp.basepopup.BasePopupWindow
  * @usage null
  */
 class RecordDetailBasePopup(context: Context) : BasePopupWindow(
-    context, MATCH_PARENT, WRAP_CONTENT, true
+    context, MATCH_PARENT, WRAP_CONTENT
 ) {
     interface Listener {
         fun model(): RoomRecord
@@ -63,7 +63,7 @@ class RecordDetailBasePopup(context: Context) : BasePopupWindow(
     ) : this(context) {
         this.listener = listener
         this.record = record
-        delayInit()
+        setContentView(R.layout.view_base_popup_detail_record)
     }
 
     private lateinit var listener: Listener
@@ -71,9 +71,8 @@ class RecordDetailBasePopup(context: Context) : BasePopupWindow(
     private lateinit var rv: RecyclerView
     private lateinit var data: MutableList<ConfigItem>
     private lateinit var multipleItemAdapter: ConfigAdapter
-    override fun onCreateContentView(): View {
 
-        val view: View = createPopupById(R.layout.view_base_popup_detail_record)
+    override fun onViewCreated(view: View) {
         val back: View = view.findViewById(R.id.back)
         back.setOnClickListener { dismiss() }
         rv = view.findViewById(R.id.rv)
@@ -89,7 +88,6 @@ class RecordDetailBasePopup(context: Context) : BasePopupWindow(
         multipleItemAdapter.addFooterView(v)
 
         rv.adapter = multipleItemAdapter
-        return view
     }
 
     private fun refreshData() {

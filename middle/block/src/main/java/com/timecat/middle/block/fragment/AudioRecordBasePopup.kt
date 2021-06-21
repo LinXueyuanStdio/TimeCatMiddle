@@ -33,10 +33,8 @@ class AudioRecordBasePopup(
         fun addAttachment(attachmentPath: String)
     }
 
-    override fun onCreateContentView(): View {
-        val view: View =createPopupById(R.layout.view_base_popup_audio_record)
-        onCreateView(view)
-        return view
+    init {
+        setContentView(R.layout.view_base_popup_audio_record)
     }
 
     private val PREPARED = 0
@@ -56,7 +54,7 @@ class AudioRecordBasePopup(
     private var mIvReRecording: ImageView? = null
     private var mIvCancelRecording: ImageView? = null
 
-    fun onCreateView(view: View) {
+    override fun onViewCreated(view: View) {
         screenDensity = DisplayUtil.getScreenDensity(context)
         mRecorder = AudioRecorder()
         mLlFileName = view.findViewById(R.id.ll_audio_file_name)

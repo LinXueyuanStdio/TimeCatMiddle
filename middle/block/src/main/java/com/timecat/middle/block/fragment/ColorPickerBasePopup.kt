@@ -30,9 +30,7 @@ import razerdp.basepopup.BasePopupWindow
  */
 class ColorPickerBasePopup(
     var context: Context
-) : BasePopupWindow(
-    context, MATCH_PARENT, WRAP_CONTENT, true
-) {
+) : BasePopupWindow(context, MATCH_PARENT, WRAP_CONTENT) {
     interface Listener {
         fun onOk(color: Int)
     }
@@ -44,7 +42,7 @@ class ColorPickerBasePopup(
         this.context = context
         res = context.resources
         this.listener = listener
-        delayInit()
+        setContentView(onCreateContentView())
     }
 
     private lateinit var picker: ColorPicker
@@ -60,7 +58,7 @@ class ColorPickerBasePopup(
     private lateinit var res: Resources
     private lateinit var listener: Listener
 
-    override fun onCreateContentView(): View {
+    fun onCreateContentView(): View {
         val root: View = createPopupById(R.layout.view_base_popup_color_picker)
         picker = root.findViewById(R.id.cp_colors_panel)
         valueBar = root.findViewById(R.id.cp_color_value)

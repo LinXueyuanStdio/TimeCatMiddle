@@ -15,17 +15,18 @@ import razerdp.basepopup.BasePopupWindow
 class AddAttachmentBasePopup(
     context: Context,
     var listener: Listener
-) : BasePopupWindow(
-    context, MATCH_PARENT, WRAP_CONTENT
-) {
+) : BasePopupWindow(context, MATCH_PARENT, WRAP_CONTENT) {
 
     private lateinit var mTvTakePhotoAsBt: View
     private lateinit var mTvShootVideoAsBt: View
     private lateinit var mTvRecordAudioAsBt: View
     private lateinit var mTvChooseMediaFilesAsBt: View
 
-    override fun onCreateContentView(): View {
-        val view: View = createPopupById(R.layout.view_base_popup_add_attachment)
+    init {
+        setContentView(R.layout.view_base_popup_add_attachment)
+    }
+
+    override fun onViewCreated(view: View) {
         mTvTakePhotoAsBt = view.findViewById(R.id.tv_take_photo_as_bt)
         mTvShootVideoAsBt = view.findViewById(R.id.tv_shoot_video_as_bt)
         mTvRecordAudioAsBt = view.findViewById(R.id.tv_record_audio_as_bt)
@@ -34,7 +35,6 @@ class AddAttachmentBasePopup(
         mTvShootVideoAsBt.setOnClickListener { startShootVideo() }
         mTvRecordAudioAsBt.setOnClickListener { showRecordAudioDialog() }
         mTvChooseMediaFilesAsBt.setOnClickListener { startChooseMediaFile() }
-        return view
     }
 
     interface Listener {
