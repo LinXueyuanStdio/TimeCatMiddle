@@ -42,7 +42,7 @@ class ColorPickerBasePopup(
         this.context = context
         res = context.resources
         this.listener = listener
-        setContentView(onCreateContentView())
+        setContentView(R.layout.view_base_popup_color_picker)
     }
 
     private lateinit var picker: ColorPicker
@@ -58,8 +58,7 @@ class ColorPickerBasePopup(
     private lateinit var res: Resources
     private lateinit var listener: Listener
 
-    fun onCreateContentView(): View {
-        val root: View = createPopupById(R.layout.view_base_popup_color_picker)
+    override fun onViewCreated(root: View) {
         picker = root.findViewById(R.id.cp_colors_panel)
         valueBar = root.findViewById(R.id.cp_color_value)
         saturationBar = root.findViewById(R.id.cp_color_saturation)
@@ -87,8 +86,6 @@ class ColorPickerBasePopup(
         adapter = ColorAdapter(getColors(context.theme) { curColor = it })
         rv.layoutManager = GridLayoutManager(context, 6)
         rv.adapter = adapter
-
-        return root
     }
 
     @ColorInt
