@@ -25,12 +25,12 @@ import com.timecat.middle.block.adapter.ConfigItem
  * @usage null
  */
 class RecordDetailPopup(
-    var id: Long,
+    var id: String,
     var parent: View,
     var listener: Listener
 ) {
     interface Listener {
-        fun getRecordById(id: Long): RoomRecord
+        fun getRecordById(id: String): RoomRecord
 
         fun pin(pin: Boolean)
         fun archive(archive: Boolean)

@@ -138,7 +138,7 @@ public class DateTimeUtil {
      * see {@link #getDateTimeStrReminder(Context, long, TaskStatus, ReminderStatus, boolean)}
      */
     public static String getDateTimeStrReminder(Context context, long thingId, boolean timePeriod) {
-        RoomRecord roomRecord = TimeCatRoomDatabase.forFile(context).recordDao().getBLOCK_RECORD(thingId);
+        RoomRecord roomRecord = TimeCatRoomDatabase.forFile(context).recordDao().get(thingId);
         if (roomRecord == null) {
             return "";
         }
@@ -189,7 +189,7 @@ public class DateTimeUtil {
      * see {@link #getDateTimeStrGoal(Context, long, long, long, TaskStatus, ReminderStatus)}
      */
     public static String getDateTimeStrGoal(Context context, long thingId) {
-        RoomRecord roomRecord = TimeCatRoomDatabase.forFile(context).recordDao().getBLOCK_RECORD(thingId);
+        RoomRecord roomRecord = TimeCatRoomDatabase.forFile(context).recordDao().get(thingId);
         if (roomRecord == null) {
             return "";
         }
