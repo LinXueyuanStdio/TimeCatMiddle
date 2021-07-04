@@ -104,14 +104,16 @@ interface IDatabase {
     fun updateRoomRecords(vararg record: RoomRecord)
     fun updateRoomRecords(records: List<RoomRecord>) = updateRoomRecords(*records.toTypedArray())
     fun getByUuid(uuid: String): RoomRecord?
-    fun getAllLiveChildren(uuid: String): MutableList<RoomRecord>
-    fun getAllRecords(): MutableList<RoomRecord>
-    fun getAllTimeRecords(fromTs: Long, toTs: Long): MutableList<RoomRecord>
-    fun getAllByTypeAndSubtype(type: Int, subType: Int): MutableList<RoomRecord>
+
+    fun getAllLiveChildren(uuid: String, offset: Int, pageSize: Int): MutableList<RoomRecord>
+    fun getAllRecords(offset: Int, pageSize: Int): MutableList<RoomRecord>
+    fun getAllTimeRecords(fromTs: Long, toTs: Long, offset: Int, pageSize: Int): MutableList<RoomRecord>
+    fun getAllByTypeAndSubtype(type: Int, subType: Int, offset: Int, pageSize: Int): MutableList<RoomRecord>
+    fun searchAll(query: String, offset: Int, pageSize: Int): MutableList<RoomRecord>
 
     fun getAllRecordData(all: List<RoomRecord>, listener: RecordDao.OnRecordDataLoaded)
     fun getAllData(all: List<RoomRecord>, listener: RecordDao.OnDataLoaded)
-    fun searchAll(query: String, offset: Int, pageSize: Int): MutableList<RoomRecord>
+
     fun getHabit(id: Long): Habit?
 
     fun getAllTags(uuid: List<String>): List<Tag>
