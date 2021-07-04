@@ -38,6 +38,7 @@ interface ItemCommonListener :
 
 interface ItemActionListener {
     fun loadFor(record: RoomRecord)
+    fun loadMore(lastPosition: Int, currentPage: Int)
     fun showMore(record: RoomRecord)
 
     /**
@@ -60,7 +61,6 @@ interface ItemActionListener {
     fun isPlayingAudio(message: RoomRecord): Boolean
     fun playAudio(url: String, record: RoomRecord, callback:PlayAudioCallback)
 
-    fun configAdapter(enableEndless: Boolean, endlessPageSize: Int = 512, endlessScrollThreshold: Int = 4, noMoreItem: BaseItem<*>? = null)
     fun onLongClick(selectPosition: Int)
     fun addAction(action: ThingAction)
     fun setTop(isTop: Boolean)
