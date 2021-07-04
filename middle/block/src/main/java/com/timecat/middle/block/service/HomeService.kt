@@ -54,6 +54,12 @@ interface ItemActionListener {
     fun loadHeader(headers: List<BaseItem<*>>)
     fun navigateTo(name: String, uuid: String, type: Int = -1)
 
+    /**
+     * 获取当前是否播放中
+     */
+    fun isPlayingAudio(message: RoomRecord): Boolean
+    fun playAudio(url: String, record: RoomRecord, callback:PlayAudioCallback)
+
     fun configAdapter(enableEndless: Boolean, endlessPageSize: Int = 512, endlessScrollThreshold: Int = 4, noMoreItem: BaseItem<*>? = null)
     fun onLongClick(selectPosition: Int)
     fun addAction(action: ThingAction)
@@ -68,6 +74,13 @@ interface ItemActionListener {
     fun insert(position: Int, record: RoomRecord, listener: ItemCommonListener)
     fun setSortType(type: Int, listener: ItemCommonListener)
     fun setSortAsc(ascending: Boolean, listener: ItemCommonListener)
+}
+
+interface PlayAudioCallback {
+    fun setAudioSessionId( audioSessionId:Int)
+    fun pause()
+    fun stop()
+    fun start()
 }
 
 interface ItemGetterListener {
