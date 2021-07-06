@@ -133,6 +133,7 @@ interface ItemActionListener {
     fun addAction(action: ThingAction)
     fun setTop(isTop: Boolean)
     fun getSortType(): Int
+    fun getSortAsc(): Boolean
     fun focus(item: IFlexible<*>)
     fun close()
 
