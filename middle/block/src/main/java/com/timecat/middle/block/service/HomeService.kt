@@ -19,6 +19,7 @@ import com.timecat.identity.data.service.DataError
 import com.timecat.layout.ui.business.breadcrumb.Path
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.layout.ui.entity.BaseItem
+import com.timecat.middle.block.R
 import com.timecat.middle.block.item.BaseRecordItem
 import com.timecat.middle.block.support.ChangeReminderService
 import com.timecat.middle.block.support.HabitService
@@ -52,12 +53,12 @@ interface HomeService : PathContext, ItemGetterListener {
 interface PathContext {
     fun loadMenu(menuContext: MenuContext)
     fun loadHeader(headers: List<BaseItem<*>>)
-    fun loadChipButtons(buttons: List<Chip>)
-    fun loadChipType(types: List<TypeChip>)
-    fun loadViewsInPanel(views: List<View>)
     fun loadInputSend(inputContext: InputContext)
     fun loadCommand(commandContext: CommandContext)
-    fun setCurrentChipType(type: TypeChip)
+    fun loadViewsInPanel(views: List<View>)
+    fun loadChipButtons(buttons: List<Chip>)
+    fun loadChipType(types: List<TypeChip>)
+    fun setCurrentChipType(type: TypeChip?)
 }
 
 interface InputContext {
@@ -93,6 +94,12 @@ abstract class TypeChip @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : Chip(context, attrs, defStyleAttr) {
     abstract fun typeIcon(): Drawable
+    init {
+        id = View.generateViewId()
+        isCheckedIconVisible = true
+        isCheckable = true
+        isChecked = true
+    }
 }
 
 interface ItemCommonListener :
