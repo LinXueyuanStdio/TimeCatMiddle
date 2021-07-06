@@ -31,19 +31,20 @@ import eu.davidea.flexibleadapter.items.IFlexible
  * @description null
  * @usage null
  */
-interface HomeService : PathContext {
+interface HomeService : PathContext, ItemGetterListener {
     fun databaseReload()
+    fun actionMode(): ActionBarMenu
+    fun statusMenu(): ActionBarMenuItem
     fun statefulView(): StatefulLayout?
     fun itemCommonListener(): ItemCommonListener
+
     fun reload()
     fun reload(data: List<BaseItem<*>>)
-    fun navigateTo(name: String, uuid: String, type: Int = -1)
-    fun updateContextTitle(count:Int)
+    fun updateContextTitle(count: Int)
 }
 
 interface PathContext {
-    fun loadActionMode(config: ActionBarMenu.() -> Unit, onClick: (id: Int) -> Unit)
-    fun loadMenu(config: ActionBarMenuItem.() -> Unit, onClick: (view: ActionBarMenuItem) -> Unit)
+    fun loadMenu(menuContext: MenuContext)
     fun loadHeader(headers: List<BaseItem<*>>)
     fun loadChipButtons(buttons: List<Chip>)
     fun loadChipType(types: List<TypeChip>)
@@ -51,6 +52,13 @@ interface PathContext {
     fun loadInputSend(onSend: (selectedType: TypeChip?, text: String) -> Unit)
     fun loadCommand(commandContext: CommandContext)
     fun setCurrentChipType(type: TypeChip)
+}
+
+interface MenuContext {
+    fun configActionMenu(iconColor: Int, actionModeViews: MutableList<View>)
+    fun onActionMenuClick(actionMode: ActionBarMenu, id: Int)
+    fun configStatusMenu()
+    fun onStatusMenuClick(view: ActionBarMenuItem)
 }
 
 interface CommandContext {
@@ -97,7 +105,6 @@ interface ItemActionListener {
     fun openPage(page: BasePage)
     fun openPage(page: BasePage, removeLast: Boolean)
     fun openPage(page: BasePage, removeLast: Boolean, forceWithoutAnimation: Boolean)
-    fun navigateTo(name: String, uuid: String, type: Int = -1)
 
     /**
      * 获取当前是否播放中
@@ -135,6 +142,7 @@ interface ItemGetterListener {
     fun popupParentView(): View
     fun habitService(): HabitService?
     fun changeReminderService(): ChangeReminderService?
+    fun navigateTo(name: String, uuid: String, type: Int = -1)
 }
 
 interface IDatabase {
