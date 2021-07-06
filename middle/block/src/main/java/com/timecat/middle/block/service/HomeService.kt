@@ -57,9 +57,9 @@ interface PathContext {
 }
 
 interface MenuContext {
-    fun configActionMenu(iconColor: Int, actionModeViews: MutableList<View>)
+    fun configActionMenu(actionMode: ActionBarMenu, actionModeViews: MutableList<View>, iconColor: Int)
     fun onActionMenuClick(actionMode: ActionBarMenu, id: Int)
-    fun configStatusMenu()
+    fun configStatusMenu(view: ActionBarMenuItem)
     fun onStatusMenuClick(view: ActionBarMenuItem)
 }
 
