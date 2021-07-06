@@ -33,17 +33,19 @@ import eu.davidea.flexibleadapter.items.IFlexible
  * @usage null
  */
 interface HomeService : PathContext, ItemGetterListener {
-    fun databaseReload()
     fun actionMode(): ActionBarMenu
     fun statusMenu(): ActionBarMenuItem
     fun statefulView(): StatefulLayout?
     fun itemCommonListener(): ItemCommonListener
 
-    fun reload()
-    fun reload(data: List<BaseItem<*>>)
+    fun reloadDatabase()
+    fun reloadData()
+    fun reloadData(data: List<BaseItem<*>>)
 
+    fun restoreSelection()
     fun destroyActionMode()
     fun updateContextTitle(count: Int)
+
     fun currentPath(getPath: (Path) -> Unit)
 }
 
