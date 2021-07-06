@@ -2,6 +2,8 @@ package com.timecat.middle.block.service
 
 import android.content.Context
 import com.google.android.material.chip.Chip
+import com.timecat.data.room.record.RoomRecord
+import com.timecat.layout.ui.business.breadcrumb.Path
 import com.timecat.layout.ui.entity.BaseItem
 
 /**
@@ -25,15 +27,9 @@ interface ContainerService {
     }
 
     /**
-     * 加载容器按钮
+     * 加载上下文
      */
-    fun loadContainerButton(context: Context, parentUuid: String, homeService: HomeService, callback: LoadButton)
-    interface LoadButton {
-        fun onEmpty(text: String, retry:()->Unit)
-        fun onError(text: String, retry:()->Unit)
-        fun onLoading(text: String, onCancel:()->Unit)
-        fun onLoadSuccess(items: List<Chip>)
-    }
+    fun loadContext(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService)
 
     fun loadMoreForVirtualPath(context: Context, parentUuid: String, offset: Int, homeService: HomeService, callback: LoadMoreCallback)
     interface LoadMoreCallback {

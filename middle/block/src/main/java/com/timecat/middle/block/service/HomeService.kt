@@ -1,13 +1,21 @@
 package com.timecat.middle.block.service
 
+import android.content.Context
+import android.graphics.drawable.Drawable
+import android.text.Editable
+import android.util.AttributeSet
 import android.view.View
+import com.google.android.material.chip.Chip
 import com.gturedi.views.StatefulLayout
+import com.same.lib.core.ActionBarMenu
+import com.same.lib.core.ActionBarMenuItem
 import com.same.lib.core.BasePage
 import com.timecat.data.room.AppRoomDatabase
 import com.timecat.data.room.habit.Habit
 import com.timecat.data.room.record.RecordDao
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.data.room.tag.Tag
+import com.timecat.identity.data.service.DataError
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.middle.block.item.BaseRecordItem
@@ -23,13 +31,50 @@ import eu.davidea.flexibleadapter.items.IFlexible
  * @description null
  * @usage null
  */
-interface HomeService {
+interface HomeService : PathContext {
     fun databaseReload()
+    fun statefulView(): StatefulLayout?
+    fun itemCommonListener(): ItemCommonListener
     fun reload()
     fun reload(data: List<BaseItem<*>>)
     fun navigateTo(name: String, uuid: String, type: Int = -1)
-    fun statefulView(): StatefulLayout?
-    fun itemCommonListener(): ItemCommonListener
+    fun updateContextTitle(count:Int)
+}
+
+interface PathContext {
+    fun loadActionMode(config: ActionBarMenu.() -> Unit, onClick: (id: Int) -> Unit)
+    fun loadMenu(config: ActionBarMenuItem.() -> Unit, onClick: (view: ActionBarMenuItem) -> Unit)
+    fun loadHeader(headers: List<BaseItem<*>>)
+    fun loadChipButtons(buttons: List<Chip>)
+    fun loadChipType(types: List<TypeChip>)
+    fun loadViewsInPanel(views: List<View>)
+    fun loadInputSend(onSend: (selectedType: TypeChip?, text: String) -> Unit)
+    fun loadCommand(commandContext: CommandContext)
+    fun setCurrentChipType(type: TypeChip)
+}
+
+interface CommandContext {
+    fun OnQuery(context: Context, query: CharSequence?, callback: CommandQueryCallback)
+}
+
+class CommandQueryCallback(
+    var onError: (e: DataError) -> Unit = {},
+    var onEmpty: () -> Unit = {},
+    var onLoading: (progress: Int) -> Unit = {},
+    var onSuccess: (records: List<BaseItem<*>>) -> Unit = {},
+    var onDispatchClick: (ContextCommand) -> Unit = {}
+)
+
+open class ContextCommand(
+    val onRun: (Editable) -> Boolean = { false },
+)
+
+abstract class TypeChip @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : Chip(context, attrs, defStyleAttr) {
+    abstract fun typeIcon(): Drawable
 }
 
 interface ItemCommonListener :
@@ -52,14 +97,13 @@ interface ItemActionListener {
     fun openPage(page: BasePage)
     fun openPage(page: BasePage, removeLast: Boolean)
     fun openPage(page: BasePage, removeLast: Boolean, forceWithoutAnimation: Boolean)
-    fun loadHeader(headers: List<BaseItem<*>>)
     fun navigateTo(name: String, uuid: String, type: Int = -1)
 
     /**
      * 获取当前是否播放中
      */
     fun isPlayingAudio(message: RoomRecord): Boolean
-    fun playAudio(url: String, record: RoomRecord, callback:PlayAudioCallback)
+    fun playAudio(url: String, record: RoomRecord, callback: PlayAudioCallback)
 
     fun onLongClick(selectPosition: Int)
     fun addAction(action: ThingAction)
@@ -77,7 +121,7 @@ interface ItemActionListener {
 }
 
 interface PlayAudioCallback {
-    fun setAudioSessionId( audioSessionId:Int)
+    fun setAudioSessionId(audioSessionId: Int)
     fun pause()
     fun stop()
     fun start()
