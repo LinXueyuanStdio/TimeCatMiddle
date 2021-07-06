@@ -51,9 +51,13 @@ interface PathContext {
     fun loadChipButtons(buttons: List<Chip>)
     fun loadChipType(types: List<TypeChip>)
     fun loadViewsInPanel(views: List<View>)
-    fun loadInputSend(onSend: (selectedType: TypeChip?, text: String) -> Unit)
+    fun loadInputSend(inputContext: InputContext)
     fun loadCommand(commandContext: CommandContext)
     fun setCurrentChipType(type: TypeChip)
+}
+
+interface InputContext {
+    fun send(selectedType: TypeChip?, text: String)
 }
 
 interface MenuContext {
