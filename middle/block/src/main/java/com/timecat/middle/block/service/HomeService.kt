@@ -16,6 +16,7 @@ import com.timecat.data.room.record.RecordDao
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.data.room.tag.Tag
 import com.timecat.identity.data.service.DataError
+import com.timecat.layout.ui.business.breadcrumb.Path
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.middle.block.item.BaseRecordItem
@@ -43,6 +44,7 @@ interface HomeService : PathContext, ItemGetterListener {
 
     fun destroyActionMode()
     fun updateContextTitle(count: Int)
+    fun currentPath(getPath: (Path) -> Unit)
 }
 
 interface PathContext {
