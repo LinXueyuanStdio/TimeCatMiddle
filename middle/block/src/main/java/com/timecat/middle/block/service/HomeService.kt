@@ -40,6 +40,8 @@ interface HomeService : PathContext, ItemGetterListener {
 
     fun reload()
     fun reload(data: List<BaseItem<*>>)
+
+    fun destroyActionMode()
     fun updateContextTitle(count: Int)
 }
 
