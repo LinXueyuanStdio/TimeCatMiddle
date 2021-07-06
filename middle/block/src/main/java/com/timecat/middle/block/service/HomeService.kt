@@ -105,11 +105,11 @@ interface IDatabase {
     fun updateRoomRecords(records: List<RoomRecord>) = updateRoomRecords(*records.toTypedArray())
     fun getByUuid(uuid: String): RoomRecord?
 
-    fun getAllLiveChildren(uuid: String, offset: Int, pageSize: Int): MutableList<RoomRecord>
-    fun getAllRecords(offset: Int, pageSize: Int): MutableList<RoomRecord>
-    fun getAllTimeRecords(fromTs: Long, toTs: Long, offset: Int, pageSize: Int): MutableList<RoomRecord>
-    fun getAllByTypeAndSubtype(type: Int, subType: Int, offset: Int, pageSize: Int): MutableList<RoomRecord>
-    fun searchAll(query: String, offset: Int, pageSize: Int): MutableList<RoomRecord>
+    fun getAllLiveChildren(uuid: String, order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
+    fun getAllRecords(order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
+    fun getAllTimeRecords(fromTs: Long, toTs: Long, order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
+    fun getAllByTypeAndSubtype(type: Int, subType: Int, order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
+    fun searchAll(query: String, order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
 
     fun getAllRecordData(all: List<RoomRecord>, listener: RecordDao.OnRecordDataLoaded)
     fun getAllData(all: List<RoomRecord>, listener: RecordDao.OnDataLoaded)
