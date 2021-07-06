@@ -19,7 +19,6 @@ import com.timecat.identity.data.service.DataError
 import com.timecat.layout.ui.business.breadcrumb.Path
 import com.timecat.layout.ui.entity.BaseAdapter
 import com.timecat.layout.ui.entity.BaseItem
-import com.timecat.middle.block.R
 import com.timecat.middle.block.item.BaseRecordItem
 import com.timecat.middle.block.support.ChangeReminderService
 import com.timecat.middle.block.support.HabitService
@@ -94,6 +93,7 @@ abstract class TypeChip @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : Chip(context, attrs, defStyleAttr) {
     abstract fun typeIcon(): Drawable
+
     init {
         id = View.generateViewId()
         isCheckedIconVisible = true
@@ -132,6 +132,7 @@ interface ItemActionListener {
     fun onLongClick(selectPosition: Int)
     fun addAction(action: ThingAction)
     fun setTop(isTop: Boolean)
+    fun setInitSortTypeAndSortAsc(sortType: Int, sortAsc: Boolean)
     fun getSortType(): Int
     fun getSortAsc(): Boolean
     fun focus(item: IFlexible<*>)
