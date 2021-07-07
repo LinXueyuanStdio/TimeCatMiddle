@@ -79,7 +79,7 @@ class PanelIdentity(
 )
 
 interface PanelContext {
-    fun loadPanel(panels: List<PanelIdentity>)
+    fun loadPanel(): List<PanelIdentity>
     fun onPanelOpen(panel: PanelIdentity)
     fun onPanelClose(panel: PanelIdentity)
 }
