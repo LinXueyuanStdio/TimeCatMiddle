@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.util.AttributeSet
 import android.view.View
+import android.widget.EditText
 import com.google.android.material.chip.Chip
 import com.gturedi.views.StatefulLayout
 import com.same.lib.core.ActionBarMenu
@@ -36,6 +37,7 @@ interface HomeService : PathContext, ItemGetterListener {
     fun actionMode(): ActionBarMenu
     fun statusMenu(): ActionBarMenuItem
     fun statefulView(): StatefulLayout?
+    fun inputEditText(): EditText
     fun itemCommonListener(): ItemCommonListener
 
     fun reloadDatabase()
