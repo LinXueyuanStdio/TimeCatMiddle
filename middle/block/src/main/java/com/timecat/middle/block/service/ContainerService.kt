@@ -1,7 +1,6 @@
 package com.timecat.middle.block.service
 
 import android.content.Context
-import com.google.android.material.chip.Chip
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.layout.ui.business.breadcrumb.Path
 import com.timecat.layout.ui.entity.BaseItem
@@ -15,21 +14,21 @@ import com.timecat.layout.ui.entity.BaseItem
  */
 interface ContainerService {
     /**
+     * 加载上下文
+     */
+    fun loadContext(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService)
+
+    /**
      * 加载列表项
      * 无尽加载模式时，则为加载第一批数据
      */
     fun loadForVirtualPath(context: Context, parentUuid: String, homeService: HomeService, callback: LoadCallback)
     interface LoadCallback {
-        fun onEmpty(text: String, retry:()->Unit)
-        fun onError(text: String, retry:()->Unit)
-        fun onLoading(text: String, onCancel:()->Unit)
+        fun onEmpty(text: String, retry: () -> Unit)
+        fun onError(text: String, retry: () -> Unit)
+        fun onLoading(text: String, onCancel: () -> Unit)
         fun onVirtualLoadSuccess(items: List<BaseItem<*>>)
     }
-
-    /**
-     * 加载上下文
-     */
-    fun loadContext(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService)
 
     fun loadMoreForVirtualPath(context: Context, parentUuid: String, offset: Int, homeService: HomeService, callback: LoadMoreCallback)
     interface LoadMoreCallback {
@@ -38,4 +37,8 @@ interface ContainerService {
         fun onLoading(text: String)
         fun onVirtualLoadSuccess(items: List<BaseItem<*>>)
     }
+    /**
+     * 回收当前上下文
+     */
+    fun onDestroy(context: Context) {}
 }
