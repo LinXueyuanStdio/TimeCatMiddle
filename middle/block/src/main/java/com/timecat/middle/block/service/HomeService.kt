@@ -56,7 +56,7 @@ interface PathContext {
     fun loadHeader(headers: List<BaseItem<*>>)
     fun loadInputSend(inputContext: InputContext)
     fun loadCommand(commandContext: CommandContext)
-    fun loadViewsInPanel(views: List<View>)
+    fun loadPanel(panelContext: PanelContext)
     fun loadChipButtons(buttons: List<Chip>)
     fun loadChipType(types: List<TypeChip>)
     fun setCurrentChipType(type: TypeChip?)
@@ -71,6 +71,17 @@ interface MenuContext {
     fun onActionMenuClick(actionMode: ActionBarMenu, id: Int)
     fun configStatusMenu(view: ActionBarMenuItem)
     fun onStatusMenuClick(view: ActionBarMenuItem)
+}
+
+class PanelIdentity(
+    val title: String,
+    val panelView: View
+)
+
+interface PanelContext {
+    fun loadPanel(panels: List<PanelIdentity>)
+    fun onPanelOpen(panel: PanelIdentity)
+    fun onPanelClose(panel: PanelIdentity)
 }
 
 interface CommandContext {
