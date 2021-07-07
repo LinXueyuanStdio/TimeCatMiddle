@@ -177,6 +177,7 @@ interface IDatabase {
     fun getByUuid(uuid: String): RoomRecord?
 
     fun getAllLiveChildren(uuid: String, order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
+    fun getAllLiveMessage(uuid: String, offset: Int, pageSize: Int): MutableList<RoomRecord>
     fun getAllRecords(order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
     fun getAllTimeRecords(fromTs: Long, toTs: Long, order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
     fun getAllByTypeAndSubtype(type: Int, subType: Int, order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
