@@ -71,6 +71,7 @@ interface MenuContext {
     fun onActionMenuClick(actionMode: ActionBarMenu, id: Int)
     fun configStatusMenu(view: ActionBarMenuItem)
     fun onStatusMenuClick(view: ActionBarMenuItem)
+    fun updateRoomRecords(record: List<RoomRecord>)
 }
 
 class PanelIdentity(
