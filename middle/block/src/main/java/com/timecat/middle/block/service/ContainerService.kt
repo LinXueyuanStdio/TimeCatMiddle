@@ -41,4 +41,6 @@ interface ContainerService {
      * 回收当前上下文
      */
     fun onDestroy(context: Context) {}
+    fun onPause(context: Context) {}
+    fun onResume(context: Context) {}
 }
