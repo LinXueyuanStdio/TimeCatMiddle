@@ -24,6 +24,9 @@ interface ImageSelectService {
     fun selectOneLocalIcon(activity: Activity, cropId: Int, onSuccess: (String) -> Unit)
 
     //随机图标
+    fun selectOneRandomAvatar(activity: Activity, cropId: Int, onSuccess: (String) -> Unit)
+
+    //随机大图
     fun selectOneRandomImage(activity: Activity, cropId: Int, onSuccess: (String) -> Unit)
 
     //我的在线相册
