@@ -62,6 +62,28 @@ interface PathContext {
     fun setCurrentChipType(type: TypeChip?)
 }
 
+open class EmptyInputContext : InputContext {
+    override fun send(selectedType: TypeChip?, text: String) {}
+}
+
+open class EmptyMenuContext : MenuContext {
+    override fun configActionMenu(actionMode: ActionBarMenu, actionModeViews: MutableList<View>, iconColor: Int) {}
+    override fun onActionMenuClick(actionMode: ActionBarMenu, id: Int) {}
+    override fun configStatusMenu(view: ActionBarMenuItem) {}
+    override fun onStatusMenuClick(view: ActionBarMenuItem) {}
+    override fun updateRoomRecords(record: List<RoomRecord>) {}
+}
+
+open class EmptyPanelContext : PanelContext {
+    override fun loadPanel(): List<PanelIdentity> = emptyList()
+    override fun onPanelOpen(panel: PanelIdentity) {}
+    override fun onPanelClose(panel: PanelIdentity) {}
+}
+
+open class EmptyCommandContext : CommandContext {
+    override fun OnQuery(context: Context, query: CharSequence?, callback: CommandQueryCallback) {}
+}
+
 interface InputContext {
     fun send(selectedType: TypeChip?, text: String)
 }
@@ -206,3 +228,5 @@ interface IDatabase {
     fun getAllTags(): List<Tag>
     fun insertTag(tag: Tag)
 }
+
+const val ONLINE_SCHEMA = "online://block/"
