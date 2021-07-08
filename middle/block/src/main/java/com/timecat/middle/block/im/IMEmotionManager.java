@@ -38,8 +38,8 @@ public class IMEmotionManager {
     private static final String IM_EMOTION_GROUP = "im_emotion_group";
     private static final String IM_EMOTION_BIG_GROUP = "im_emotion_big_group";
 
-    private static List<IMEmotionItem> EMOTION_LIST = new ArrayList<>();
-    private static List<IMEmotionItem> BIG_EMOTION_LIST = new ArrayList<>();
+    private static final List<IMEmotionItem> EMOTION_LIST = new ArrayList<>();
+    private static final List<IMEmotionItem> BIG_EMOTION_LIST = new ArrayList<>();
 
     static {
         // 内部小表情分组
@@ -150,7 +150,7 @@ public class IMEmotionManager {
         BIG_EMOTION_LIST.add(new IMEmotionItem(R.drawable.im_emotion_big_16, "[二哈]"));
     }
 
-    private List<IMEmotionGroup> mEmotionGroupList = new ArrayList<>();
+    private final List<IMEmotionGroup> mEmotionGroupList = new ArrayList<>();
 
     private IMEmotionManager() {
     }

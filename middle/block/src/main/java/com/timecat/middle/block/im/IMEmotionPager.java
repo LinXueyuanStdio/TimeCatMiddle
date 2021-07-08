@@ -14,13 +14,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
-import androidx.viewpager.widget.ViewPager;
-
 import com.timecat.middle.block.R;
 import com.vmloft.develop.library.tools.utils.VMSystem;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Create by lzan13 on 2019/5/29 11:10
@@ -104,7 +104,7 @@ public class IMEmotionPager extends RelativeLayout {
     /**
      * 加载表情页
      */
-    private List<IMEmotionRecyclerView> loadEmotionPageView() {
+    public List<IMEmotionRecyclerView> loadEmotionPageView() {
         List<IMEmotionRecyclerView> viewList = new ArrayList<>();
         List<IMEmotionGroup> groupList = IMEmotionManager.getInstance().getEmotionGroupList();
         if (groupList == null || groupList.size() <= 0) {
@@ -136,7 +136,7 @@ public class IMEmotionPager extends RelativeLayout {
     /**
      * 刷新表情数据
      */
-    private void refresh() {
+    public void refresh() {
         if (mAdapter != null) {
             mAdapter.update(mPageViewList);
             setupTabLayout();
@@ -146,7 +146,7 @@ public class IMEmotionPager extends RelativeLayout {
     /**
      * 装载 TabLayout
      */
-    private void setupTabLayout() {
+    public void setupTabLayout() {
         List<Integer> resList = new ArrayList<>();
         for (int i = 0; i < mPageViewList.size(); i++) {
             resList.add(mPageViewList.get(i).getEmotionGroup().mResId);
@@ -160,7 +160,7 @@ public class IMEmotionPager extends RelativeLayout {
      */
     private IIMEmotionListener mEmotionListener;
 
-    public void stEmotionListener(IIMEmotionListener listener) {
+    public void setEmotionListener(IIMEmotionListener listener) {
         mEmotionListener = listener;
     }
 
