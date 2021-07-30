@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import com.timecat.component.identity.Attr
 import com.timecat.data.room.TimeCatRoomDatabase.Companion.forFile
 import com.timecat.data.room.habit.Habit
-import com.timecat.data.room.habit.HabitRecord
-import com.timecat.data.room.habit.HabitReminder
+import com.timecat.data.room.habit.habitSchema
+import com.timecat.data.room.habit.reminderSchema
 import com.timecat.data.room.record.RecordDao
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.data.room.reminder.Reminder
@@ -69,6 +69,7 @@ class AddTimerPopup(
 
     //region view
     private val mVpDateTime: ViewFlipper
+
     // at
     private val mTimeTypes: IntArray = intArrayOf(
         Calendar.YEAR,
@@ -125,20 +126,9 @@ class AddTimerPopup(
     fun <T : View> f(view: View, layout: Int): T = view.findViewById(layout)
 
     fun getHabitById(id: Long): Habit? {
-        val habit = forFile(context).habitDao().getByID(id) ?: return null
-        habit.habitReminders = getHabitRemindersByHabitId(id)
-        habit.habitRecords = getHabitRecordsByHabitId(id)
-        return habit
+        val record = forFile(context).recordDao().get(id) ?: return null
+        return record.habitSchema
     }
-
-    private fun getHabitRemindersByHabitId(habitId: Long): List<HabitReminder> {
-        return forFile(context).habitReminderDao().getByHabit(habitId)
-    }
-
-    private fun getHabitRecordsByHabitId(habitId: Long): List<HabitRecord> {
-        return forFile(context).habitRecordDao().getByHabit(habitId)
-    }
-
 
     private fun initAll(page: Int) {
         mVpDateTime.displayedChild = page;
@@ -315,8 +305,10 @@ class AddTimerPopup(
                 dt.withMillis(DateTimeUtil.getActualTimeAfterSomeTime(reminderAfterTime))
             }
             isReminderType(mRoomRecord.subType) -> {
-                val reminder: Reminder = forFile(context).reminderDao().getByID(mRoomRecord.id)
-                dt.withMillis(reminder.getNotifyTime())
+                val reminder: Reminder? = mRoomRecord.reminderSchema
+                reminder?.let {
+                    dt.withMillis(it.getNotifyTime())
+                } ?: dt
             }
             else -> {
                 dt.plusMinutes(1)
@@ -556,7 +548,7 @@ class AddTimerPopup(
     }
 
     private fun setEventsAt() {
-        mEtsAt[4].setOnEditorActionListener {_,actionId,_->
+        mEtsAt[4].setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 endSettingTime()
                 return@setOnEditorActionListener true
@@ -622,7 +614,7 @@ class AddTimerPopup(
                 (v as EditText).setTextColor(black_54p)
             }
         }
-        mEtTimeAfter.setOnEditorActionListener{_,actionId,_->
+        mEtTimeAfter.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_NEXT) {
                 improveComplex()
                 KeyboardUtil.hideKeyboard(mEtTimeAfter)
@@ -935,9 +927,9 @@ class AddTimerPopup(
             } else {
                 val type: Int = mDtpAfter.pickedTimeType
                 if (((time > 4600000 && type == Calendar.YEAR) ||
-                            (time > 4600000 * 12 && type == Calendar.MONTH) ||
-                            (time > 4600000 * 53 && type == Calendar.WEEK_OF_YEAR) ||
-                            (time > 4600000 * 365 && type == Calendar.DATE))
+                        (time > 4600000 * 12 && type == Calendar.MONTH) ||
+                        (time > 4600000 * 53 && type == Calendar.WEEK_OF_YEAR) ||
+                        (time > 4600000 * 365 && type == Calendar.DATE))
                 ) {
                     mTvErrorAfter.setText(R.string.error_too_late)
                     return
@@ -1065,7 +1057,7 @@ class AddTimerPopup(
 
     private fun isHourMinuteWmyOK(): Boolean {
         return mIlHourWmy.textFromEditText.isNotEmpty()
-                && mIlMinuteWmy.textFromEditText.isNotEmpty()
+            && mIlMinuteWmy.textFromEditText.isNotEmpty()
     }
 
     private fun checkCanConfirmRecWeek(): String {

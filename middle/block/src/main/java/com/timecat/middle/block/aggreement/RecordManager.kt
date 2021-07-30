@@ -8,6 +8,7 @@ import com.timecat.identity.readonly.RouterHub
 import com.timecat.component.router.app.NAV
 import com.timecat.data.room.TimeCatRoomDatabase
 import com.timecat.data.room.doing.DoingRecord
+import com.timecat.data.room.habit.habitSchema
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.identity.data.base.HABIT
 import com.timecat.middle.block.R
@@ -64,8 +65,7 @@ object RecordManager {
     ): Long {
         var hrTime: Long = -1
         if (mRoomRecord.subType == HABIT) {
-            val habit =
-                TimeCatRoomDatabase.forFile(context).habitDao().getHabit(mRoomRecord.id)
+            val habit = mRoomRecord.habitSchema
             if (habit != null) {
                 val remindedTimes = habit.remindedTimes
                 val recordedTimes = habit.record.length
