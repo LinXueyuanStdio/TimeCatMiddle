@@ -17,5 +17,6 @@ public interface ChangeReminderService {
     void onChangeReminder(
             @NotNull Context context,
             @NotNull RoomRecord record,
-            @NotNull ReminderHabitParams rhParams);
+            @NotNull ReminderHabitParams rhParams,
+            @NotNull RoomIOListener listener);
 }

@@ -222,8 +222,6 @@ interface IDatabase {
     fun getAllRecordData(all: List<RoomRecord>, listener: RecordDao.OnRecordDataLoaded)
     fun getAllData(all: List<RoomRecord>, listener: RecordDao.OnDataLoaded)
 
-    fun getHabit(id: Long): Habit?
-
     fun getAllTags(uuid: List<String>): List<Tag>
     fun getAllTags(): List<Tag>
     fun insertTag(tag: Tag)

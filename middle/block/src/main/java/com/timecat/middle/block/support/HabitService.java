@@ -19,41 +19,59 @@ public interface HabitService {
      * @param context 上下文
      * @param record 有习惯的record
      */
-    void pauseHabit(@NotNull Context context, @NotNull RoomRecord record);
-    /**
-     * 习惯处于暂停状态
-     * @param context 上下文
-     * @param record 有习惯的record
-     */
-    boolean HabitIsPaused(@NotNull Context context, @NotNull RoomRecord record);
+    void pauseHabit(
+            @NotNull Context context,
+            @NotNull RoomRecord record,
+            @NotNull RoomIOListener listener
+    );
     /**
      * 恢复习惯打卡
      * @param context 上下文
      * @param record 有习惯的record
      */
-    void resumeHabit(@NotNull Context context, @NotNull RoomRecord record);
+    void resumeHabit(
+            @NotNull Context context,
+            @NotNull RoomRecord record,
+            @NotNull RoomIOListener listener
+    );
     /**
      * 打卡一次习惯
      * @param context 上下文
      * @param record 有习惯的record
      */
-    void finishHabitOneTime(@NotNull Context context, @NotNull RoomRecord record);
+    void finishHabitOneTime(
+            @NotNull Context context,
+            @NotNull RoomRecord record,
+            @NotNull RoomIOListener listener
+    );
     /**
      * 已养成该习惯 / 已达到目标 / 已完成提醒
      * @param context 上下文
      * @param record 有习惯/目标/提醒的record
      */
-    void finish(@NotNull Context context, @NotNull RoomRecord record);
+    void finish(
+            @NotNull Context context,
+            @NotNull RoomRecord record,
+            @NotNull RoomIOListener listener
+    );
     /**
      * 删除
      * @param context 上下文
      * @param record 有习惯/目标/提醒的record
      */
-    void delete(@NotNull Context context, @NotNull RoomRecord record);
+    void delete(
+            @NotNull Context context,
+            @NotNull RoomRecord record,
+            @NotNull RoomIOListener listener
+    );
     /**
      * 从回收站恢复
      * @param context 上下文
      * @param record 有习惯/目标/提醒的record
      */
-    void restore(@NotNull Context context, @NotNull RoomRecord record);
+    void restore(
+            @NotNull Context context,
+            @NotNull RoomRecord record,
+            @NotNull RoomIOListener listener
+    );
 }

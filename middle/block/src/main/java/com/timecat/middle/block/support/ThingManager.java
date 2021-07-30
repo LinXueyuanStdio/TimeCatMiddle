@@ -2,7 +2,7 @@ package com.timecat.middle.block.support;
 
 import android.content.Context;
 
-import com.timecat.data.room.TimeCatRoomDatabase;
+import com.timecat.data.room.habit.ReminderSchema;
 import com.timecat.data.room.record.RoomRecord;
 import com.timecat.data.room.reminder.Reminder;
 import com.timecat.identity.data.base.RecordKt;
@@ -21,17 +21,16 @@ import org.jetbrains.annotations.NotNull;
  */
 public class ThingManager {
 
-
-    public static int getThingTypeAfter(Context context,
-                                        @NotNull RoomRecord mRoomRecord,
-                                        @NotNull ReminderHabitParams rhParams) {
+    public static int getThingTypeAfter(
+            Context context,
+            @NotNull RoomRecord mRoomRecord,
+            @NotNull ReminderHabitParams rhParams
+    ) {
         if (!mRoomRecord.isUnderWay()) {
             return mRoomRecord.getSubType();
         }
         long time = rhParams.getReminderTime();
-        Reminder mReminder = TimeCatRoomDatabase.forFile(context)
-                .reminderDao()
-                .getByID(mRoomRecord.getId());
+        Reminder mReminder = ReminderSchema.getReminder(mRoomRecord);
         if (mRoomRecord.isReminderOn()) {
             if (mReminder != null && mReminder.getNotifyTime() == time) {
                 //和本来的提醒一致
