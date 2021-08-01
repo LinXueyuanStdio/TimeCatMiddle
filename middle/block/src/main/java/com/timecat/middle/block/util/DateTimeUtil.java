@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.widget.EditText;
 
 import com.timecat.data.room.TimeCatRoomDatabase;
+import com.timecat.data.room.habit.ReminderSchema;
 import com.timecat.data.room.record.RoomRecord;
 import com.timecat.data.room.reminder.Reminder;
 import com.timecat.identity.data.base.RecordKt;
@@ -27,8 +28,7 @@ import java.util.GregorianCalendar;
 
 
 /**
- * Created by ywwynm on 2015/8/27. Helper for formatting datetime and getting information about
- * that.
+ * Helper for formatting datetime and getting information about that.
  */
 public class DateTimeUtil {
 
@@ -142,7 +142,7 @@ public class DateTimeUtil {
         if (roomRecord == null) {
             return "";
         }
-        Reminder reminder = TimeCatRoomDatabase.forFile(context).reminderDao().getByID(thingId);
+        Reminder reminder = ReminderSchema.getReminder(roomRecord);
         if (reminder == null) {
             return "";
         }
@@ -193,7 +193,7 @@ public class DateTimeUtil {
         if (roomRecord == null) {
             return "";
         }
-        Reminder goal = TimeCatRoomDatabase.forFile(context).reminderDao().getByID(thingId);
+        Reminder goal = ReminderSchema.getReminder(roomRecord);
         if (goal == null) {
             return "";
         }
