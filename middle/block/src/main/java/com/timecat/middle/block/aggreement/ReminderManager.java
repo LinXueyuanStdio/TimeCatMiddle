@@ -2,7 +2,7 @@ package com.timecat.middle.block.aggreement;
 
 import android.content.Context;
 
-import com.timecat.data.room.reminder.Reminder;
+import com.timecat.data.room.habit.Reminder;
 import com.timecat.identity.data.base.RecordKt;
 import com.timecat.identity.data.base.ReminderStatus;
 import com.timecat.identity.data.base.TaskStatus;

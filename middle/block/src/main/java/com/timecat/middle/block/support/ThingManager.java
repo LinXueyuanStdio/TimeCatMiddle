@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.timecat.data.room.habit.ReminderSchema;
 import com.timecat.data.room.record.RoomRecord;
-import com.timecat.data.room.reminder.Reminder;
+import com.timecat.data.room.habit.Reminder;
 import com.timecat.identity.data.base.RecordKt;
 import com.timecat.identity.data.base.ReminderStatus;
 import com.timecat.identity.data.base.Type;

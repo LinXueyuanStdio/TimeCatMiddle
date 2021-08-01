@@ -3,14 +3,12 @@ package com.timecat.middle.block.aggreement
 import android.content.Context
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-
-import com.timecat.identity.readonly.RouterHub
 import com.timecat.component.router.app.NAV
-import com.timecat.data.room.TimeCatRoomDatabase
-import com.timecat.data.room.doing.DoingRecord
+import com.timecat.data.room.habit.DoingRecord
 import com.timecat.data.room.habit.habitSchema
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.identity.data.base.HABIT
+import com.timecat.identity.readonly.RouterHub
 import com.timecat.middle.block.R
 import com.timecat.middle.block.temp.Def
 import com.timecat.middle.block.util.DateTimeUtil

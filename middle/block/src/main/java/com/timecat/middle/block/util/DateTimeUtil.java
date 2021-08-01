@@ -6,9 +6,9 @@ import android.content.res.Resources;
 import android.widget.EditText;
 
 import com.timecat.data.room.TimeCatRoomDatabase;
+import com.timecat.data.room.habit.Reminder;
 import com.timecat.data.room.habit.ReminderSchema;
 import com.timecat.data.room.record.RoomRecord;
-import com.timecat.data.room.reminder.Reminder;
 import com.timecat.identity.data.base.RecordKt;
 import com.timecat.identity.data.base.ReminderStatus;
 import com.timecat.identity.data.base.TaskStatus;
@@ -314,7 +314,7 @@ public class DateTimeUtil {
     }
 
     /**
-     * Used to display {@link com.timecat.data.room.reminder.Reminder#notifyTime}
+     * Used to display {@link com.timecat.data.room.habit.Reminder#notifyTime}
      * of a Reminder which belongs to a {@link RoomRecord}
      * object with type {@link RecordKt#REMINDER}.
      *
@@ -340,14 +340,14 @@ public class DateTimeUtil {
     }
 
     /**
-     * Used to display {@link com.timecat.data.room.reminder.Reminder#notifyTime}
+     * Used to display {@link com.timecat.data.room.habit.Reminder#notifyTime}
      * of a Reminder which belongs to a {@link RoomRecord}
      * object with type {@link RecordKt#REMINDER} in detailed way.
      *
      * @param dt A {@link DateTime} object which has called
      *                 {@code DateTime#withMillis(long)}
      *                 to set the correct time of
-     *                 {@link com.timecat.data.room.reminder.Reminder#notifyTime}.
+     *                 {@link com.timecat.data.room.habit.Reminder#notifyTime}.
      *
      * @param timePeriod Whether the returned string should contain time period
      *                   information such as "in the morning", "at night" and so on.

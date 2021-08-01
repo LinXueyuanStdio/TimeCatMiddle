@@ -19,7 +19,7 @@ import com.timecat.data.room.habit.habitSchema
 import com.timecat.data.room.habit.reminderSchema
 import com.timecat.data.room.record.RecordDao
 import com.timecat.data.room.record.RoomRecord
-import com.timecat.data.room.reminder.Reminder
+import com.timecat.data.room.habit.Reminder
 import com.timecat.identity.data.base.GOAL
 import com.timecat.identity.data.base.HABIT
 import com.timecat.identity.data.base.REMINDER
