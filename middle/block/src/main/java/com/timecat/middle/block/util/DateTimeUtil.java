@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.widget.EditText;
 
-import com.timecat.data.room.TimeCatRoomDatabase;
 import com.timecat.data.room.habit.Reminder;
 import com.timecat.data.room.habit.ReminderSchema;
 import com.timecat.data.room.record.RoomRecord;
@@ -46,9 +45,9 @@ public class DateTimeUtil {
 
     public static String getGeneralDateFormatPattern(Context context) {
         if (LocaleUtil.isChinese(context)) {
-            String year  = context.getString(R.string.year);
+            String year = context.getString(R.string.year);
             String month = context.getString(R.string.month);
-            String day   = context.getString(R.string.day);
+            String day = context.getString(R.string.day);
             return "yyyy" + year + "M" + month + "d" + day;
         } else {
             return "MMM d, yyyy";
@@ -57,9 +56,9 @@ public class DateTimeUtil {
 
     public static String getGeneralDateTimeFormatPattern(Context context) {
         if (LocaleUtil.isChinese(context)) {
-            String year  = context.getString(R.string.year);
+            String year = context.getString(R.string.year);
             String month = context.getString(R.string.month);
-            String day   = context.getString(R.string.day);
+            String day = context.getString(R.string.day);
             return "yyyy" + year + "M" + month + "d" + day + "EEEE H:mm:ss";
         } else {
             return "H:mm:ss, MMM d, yyyy, EEEEEEEEE";
@@ -119,7 +118,7 @@ public class DateTimeUtil {
     }
 
     public static long getActualTimeAfterSomeTime(int[] reminderAfterTime) {
-        if (reminderAfterTime.length != 2) return 0;
+        if (reminderAfterTime.length != 2) { return 0; }
         return getActualTimeAfterSomeTime(reminderAfterTime[0], reminderAfterTime[1]);
     }
 
@@ -137,8 +136,7 @@ public class DateTimeUtil {
     /**
      * see {@link #getDateTimeStrReminder(Context, long, TaskStatus, ReminderStatus, boolean)}
      */
-    public static String getDateTimeStrReminder(Context context, long thingId, boolean timePeriod) {
-        RoomRecord roomRecord = TimeCatRoomDatabase.forFile(context).recordDao().get(thingId);
+    public static String getDateTimeStrReminder(Context context, RoomRecord roomRecord, boolean timePeriod) {
         if (roomRecord == null) {
             return "";
         }
@@ -179,7 +177,7 @@ public class DateTimeUtil {
             timeStr = timeStr.substring(3);
         }
         String ret = timeStr;
-        if (!thingState.isUnderWay()|| !reminderState.isUnderWay()) {
+        if (!thingState.isUnderWay() || !reminderState.isUnderWay()) {
             ret += ", " + ReminderManager.getStateDescription(thingState, reminderState, context);
         }
         return ret;
@@ -188,8 +186,7 @@ public class DateTimeUtil {
     /**
      * see {@link #getDateTimeStrGoal(Context, long, long, long, TaskStatus, ReminderStatus)}
      */
-    public static String getDateTimeStrGoal(Context context, long thingId) {
-        RoomRecord roomRecord = TimeCatRoomDatabase.forFile(context).recordDao().get(thingId);
+    public static String getDateTimeStrGoal(Context context, RoomRecord roomRecord) {
         if (roomRecord == null) {
             return "";
         }
@@ -229,7 +226,7 @@ public class DateTimeUtil {
             Context context, long notifyTime, long goalCreateTime, long thingFinishTime,
             TaskStatus thingState, ReminderStatus goalState) {
         boolean isChinese = LocaleUtil.isChinese(context);
-        if (thingState .isUnderWay()) {
+        if (thingState.isUnderWay()) {
             long curTime = System.currentTimeMillis();
             int days = Math.abs(calculateTimeGap(curTime, notifyTime, Calendar.DATE));
             if (days == 0) { // the alarm will ring today
@@ -262,7 +259,7 @@ public class DateTimeUtil {
                 }
                 return overdue;
             }
-        } else if (thingState .isFinished()) {
+        } else if (thingState.isFinished()) {
             int finishDays = calculateTimeGap(goalCreateTime, thingFinishTime, Calendar.DATE);
             int goalDays = calculateTimeGap(goalCreateTime, notifyTime, Calendar.DATE);
             String finishedIn = context.getString(R.string.goal_finished_normal);
@@ -517,7 +514,7 @@ public class DateTimeUtil {
             }
             sb.deleteCharAt(sb.length() - 1);
             sb.append(getTimePeriodStr(Integer.parseInt(times[0]), context.getResources()))
-                    .append(dateTimes[1]);
+              .append(dateTimes[1]);
         } else {
             sb.append("at ");
             sb.append(dateTimes[1]).append(every).append(" ");
@@ -550,7 +547,7 @@ public class DateTimeUtil {
             }
             sb.deleteCharAt(sb.length() - 1);
             sb.append(getTimePeriodStr(Integer.parseInt(times[0]), context.getResources()))
-                    .append(dateTimes[1]);
+              .append(dateTimes[1]);
         } else { // at 6:30 on the 1st, 6th, 16th, 26th day of every month
             sb.append("at ");
             sb.append(dateTimes[1]).append(" on the ");
@@ -589,7 +586,7 @@ public class DateTimeUtil {
                 sb.append(Integer.parseInt(day)).append(context.getString(R.string.month_day));
             }
             sb.append(getTimePeriodStr(Integer.parseInt(times[0]), context.getResources()))
-                    .append(dateTimes[2]);
+              .append(dateTimes[2]);
         } else { // at 18:00 on the last day of June, December in every year
             sb.append("at ");
             sb.append(dateTimes[2]).append(" on the ");
@@ -625,17 +622,17 @@ public class DateTimeUtil {
     }
 
     private static void appendYearMonthDayStr(int year, int month, int day, int curYear,
-                                              Date date, Context context, StringBuilder sb, boolean isChinese) {
+            Date date, Context context, StringBuilder sb, boolean isChinese) {
         Resources res = context.getResources();
         if (isChinese) {
             if (year != curYear) {
                 sb.append(year)
-                        .append(res.getString(R.string.year));
+                  .append(res.getString(R.string.year));
             }
             sb.append(month)
-                    .append(res.getString(R.string.month))
-                    .append(day)
-                    .append(res.getString(R.string.day));
+              .append(res.getString(R.string.month))
+              .append(day)
+              .append(res.getString(R.string.day));
         } else {
             sb.append("on ");
             SimpleDateFormat sdf;
@@ -670,7 +667,7 @@ public class DateTimeUtil {
      */
     public static String getTimePeriodStr(int hour, Resources res) {
         String[] periods = res.getStringArray(R.array.time_period);
-        int[] limits = { 6, 8, 12, 13, 17, 19, 22 };
+        int[] limits = {6, 8, 12, 13, 17, 19, 22};
         for (int i = 0; i < limits.length; i++) {
             if (hour < limits[i]) {
                 return periods[i];
@@ -689,7 +686,7 @@ public class DateTimeUtil {
             return 59;
         } else if (index == 2) {
             return getDaysOfMonth(y, m);
-        } else return Integer.MAX_VALUE;
+        } else { return Integer.MAX_VALUE; }
     }
 
     public static String getDurationBriefStr(long time) {
@@ -698,7 +695,7 @@ public class DateTimeUtil {
             return "< 1s";
         } else if (second < 3600) {
             return new SimpleDateFormat("mm:ss").format(new Date(time));
-        } else return new SimpleDateFormat("HH:mm:ss").format(new Date(time));
+        } else { return new SimpleDateFormat("HH:mm:ss").format(new Date(time)); }
     }
 
     public static String getTimeLengthStr(long time, Context context) {
@@ -735,9 +732,9 @@ public class DateTimeUtil {
                 return hour + BLK + hourStr + " " + min + BLK + minStr;
             }
         } else if (second < 86400 * 365) {
-            long day  =   second / 86400;
-            long hour =  (second % 86400) / 3600;
-            long min  = ((second % 86400) % 3600) / 60;
+            long day = second / 86400;
+            long hour = (second % 86400) / 3600;
+            long min = ((second % 86400) % 3600) / 60;
             if (hour == 0) {
                 return day + BLK + dayStr;
             } else if (min == 0) {
@@ -748,10 +745,10 @@ public class DateTimeUtil {
                         + min + BLK + minStr;
             }
         } else {
-            long year =   second / 31536000;
-            long day  =  (second % 31536000) / 86400;
+            long year = second / 31536000;
+            long day = (second % 31536000) / 86400;
             long hour = ((second % 31536000) % 86400) / 3600;
-            if (hour > 12) day++;
+            if (hour > 12) { day++; }
             if (day == 0) {
                 return year + BLK + yearStr;
             } else {
@@ -763,7 +760,7 @@ public class DateTimeUtil {
     public static String getTimeLengthStrOnlyDay(long time, Context context) {
         long day = time / 86400000L;
         long hour = (time % 86400000) / 3600;
-        if (hour > 12) day++;
+        if (hour > 12) { day++; }
         String dayStr = context.getString(R.string.days);
         if (day == 0) {
             return "< 1 " + dayStr;
@@ -805,7 +802,7 @@ public class DateTimeUtil {
     }
 
     public static int getDaysOfMonth(int y, int m) {
-        int[] days = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         if (y % 4 == 0 && (y % 100 != 0 || y % 400 == 0)) {
             days[1] = 29;
         }
