@@ -14,6 +14,25 @@ import com.timecat.layout.ui.entity.BaseItem
  */
 interface ContainerService {
     /**
+     * 加载前置上下文
+     *
+     * 这里需要加载的上下文包括
+     * 1. contextDatabase:IDatabase（非空）
+     * 2. ContextRecord:RoomRecord（可空）
+     *
+     * 该函数需要完成的任务解释：
+     *
+     * 1. contextDatabase:IDatabase 用来获取和保存 ContextRecord:RoomRecord
+     *    加载好的 contextDatabase:IDatabase 将被传递给 homeService.itemCommonListener().primaryDb()
+     *    加载好的 ContextRecord:RoomRecord 将被传递给 loadContext 函数的 record:RoomRecord 字段
+     *
+     * 2. 当 ContextRecord 定义了额外的 IDatabase（记为 subDatabase:IDatabase ）时，
+     *    则在 loadContext 中使用 record:RoomRecord 构建其 subDatabase:IDatabase
+     *    subDatabase:IDatabase 可用于 loadData / loadMoreData
+     */
+    fun loadContextRecord(path: Path, context: Context, parentUuid: String, homeService: HomeService)
+
+    /**
      * 加载上下文
      */
     fun loadContext(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService)

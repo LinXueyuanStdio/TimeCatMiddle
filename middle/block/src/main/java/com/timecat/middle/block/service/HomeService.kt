@@ -33,7 +33,7 @@ import eu.davidea.flexibleadapter.items.IFlexible
  * @description null
  * @usage null
  */
-interface HomeService : PathContext, ItemGetterListener {
+interface HomeService : DatabaseContext, PathContext, ItemGetterListener {
     fun actionMode(): ActionBarMenu
     fun statusMenu(): ActionBarMenuItem
     fun statefulView(): StatefulLayout?
@@ -49,6 +49,11 @@ interface HomeService : PathContext, ItemGetterListener {
     fun updateContextTitle(count: Int)
 
     fun currentPath(getPath: (Path) -> Unit)
+}
+
+interface DatabaseContext {
+    fun loadDatabase(database: IDatabase)
+    fun loadContextRecord(record: RoomRecord?)
 }
 
 interface PathContext {
@@ -198,6 +203,7 @@ interface ItemGetterListener {
     fun habitService(): HabitService?
     fun changeReminderService(): ChangeReminderService?
     fun navigateTo(name: String, uuid: String, type: Int = -1)
+    fun resetTo(path: Path)
 }
 
 interface IDatabase {
