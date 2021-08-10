@@ -435,19 +435,11 @@ open class RequestListCallback<T> {
     var onError: (DataError) -> Unit = {}
     var onEmpty: () -> Unit = {}
     var onSuccess: (MutableList<T>) -> Unit = {}
-    var onComplete: () -> Unit = {}
 }
 
-open class RequestSingleOrNullCallback<T> : RequestSingleCallback<T>() {
-    var onEmpty: () -> Unit = {}
-}
-
-open class RequestSingleCallback<T> : SimpleRequestCallback<T>() {
-    var onComplete: () -> Unit = {}
-}
-
-open class SimpleRequestCallback<T> {
+open class RequestSingleOrNullCallback<T> {
     var onError: (DataError) -> Unit = {}
+    var onEmpty: () -> Unit = {}
     var onSuccess: (T) -> Unit = {}
 }
 
