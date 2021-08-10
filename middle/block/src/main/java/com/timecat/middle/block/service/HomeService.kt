@@ -276,8 +276,47 @@ interface IDatabase {
         uuid: String,
         order: Int, asc: Boolean,
         offset: Int, pageSize: Int,
+    ): List<RoomRecord> = runBlocking {
+        suspendCoroutine { cb ->
+            getAllLiveChildren(uuid, order, asc, offset, pageSize) {
+                onSuccess = {
+                    cb.resume(it)
+                }
+                onEmpty = {
+                    cb.resume(listOf())
+                }
+                onError = {
+                    cb.resume(listOf())
+                }
+            }
+        }
+    }
+
+    fun getAllLiveChildren(
+        uuid: String,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
+
+    fun getAllLiveMessage(
+        uuid: String,
+        offset: Int, pageSize: Int,
+    ): List<RoomRecord> = runBlocking {
+        suspendCoroutine { cb ->
+            getAllLiveMessage(uuid, offset, pageSize) {
+                onSuccess = {
+                    cb.resume(it)
+                }
+                onEmpty = {
+                    cb.resume(listOf())
+                }
+                onError = {
+                    cb.resume(listOf())
+                }
+            }
+        }
+    }
 
     fun getAllLiveMessage(
         uuid: String,
@@ -288,8 +327,47 @@ interface IDatabase {
     fun getAllRecords(
         order: Int, asc: Boolean,
         offset: Int, pageSize: Int,
+    ): List<RoomRecord> = runBlocking {
+        suspendCoroutine { cb ->
+            getAllRecords(order, asc, offset, pageSize) {
+                onSuccess = {
+                    cb.resume(it)
+                }
+                onEmpty = {
+                    cb.resume(listOf())
+                }
+                onError = {
+                    cb.resume(listOf())
+                }
+            }
+        }
+    }
+
+    fun getAllRecords(
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
+
+    fun getAllTimeRecords(
+        fromTs: Long, toTs: Long,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+    ): List<RoomRecord> = runBlocking {
+        suspendCoroutine { cb ->
+            getAllTimeRecords(fromTs, toTs, order, asc, offset, pageSize) {
+                onSuccess = {
+                    cb.resume(it)
+                }
+                onEmpty = {
+                    cb.resume(listOf())
+                }
+                onError = {
+                    cb.resume(listOf())
+                }
+            }
+        }
+    }
 
     fun getAllTimeRecords(
         fromTs: Long, toTs: Long,
@@ -302,8 +380,48 @@ interface IDatabase {
         type: Int, subType: Int,
         order: Int, asc: Boolean,
         offset: Int, pageSize: Int,
+    ): List<RoomRecord> = runBlocking {
+        suspendCoroutine { cb ->
+            getAllByTypeAndSubtype(type, subType, order, asc, offset, pageSize) {
+                onSuccess = {
+                    cb.resume(it)
+                }
+                onEmpty = {
+                    cb.resume(listOf())
+                }
+                onError = {
+                    cb.resume(listOf())
+                }
+            }
+        }
+    }
+
+    fun getAllByTypeAndSubtype(
+        type: Int, subType: Int,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
+
+    fun searchAll(
+        query: String,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+    ): List<RoomRecord> = runBlocking {
+        suspendCoroutine { cb ->
+            searchAll(query, order, asc, offset, pageSize) {
+                onSuccess = {
+                    cb.resume(it)
+                }
+                onEmpty = {
+                    cb.resume(listOf())
+                }
+                onError = {
+                    cb.resume(listOf())
+                }
+            }
+        }
+    }
 
     fun searchAll(
         query: String,
