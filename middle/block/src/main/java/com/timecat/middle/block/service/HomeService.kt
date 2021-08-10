@@ -251,6 +251,27 @@ interface IDatabase {
         callback: RequestSingleOrNullCallback<RoomRecord>.() -> Unit
     )
 
+    fun getByUuids(uuid: List<String>): List<RoomRecord> = runBlocking {
+        suspendCoroutine { cb ->
+            getByUuids(uuid) {
+                onSuccess = {
+                    cb.resume(it)
+                }
+                onEmpty = {
+                    cb.resume(listOf())
+                }
+                onError = {
+                    cb.resume(listOf())
+                }
+            }
+        }
+    }
+
+    fun getByUuids(
+        uuid: List<String>,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    )
+
     fun getAllLiveChildren(
         uuid: String,
         order: Int, asc: Boolean,
