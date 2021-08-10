@@ -12,10 +12,7 @@ import com.same.lib.core.ActionBarMenu
 import com.same.lib.core.ActionBarMenuItem
 import com.same.lib.core.BasePage
 import com.timecat.data.room.AppRoomDatabase
-import com.timecat.data.room.habit.Habit
-import com.timecat.data.room.record.RecordDao
 import com.timecat.data.room.record.RoomRecord
-import com.timecat.data.room.tag.Tag
 import com.timecat.identity.data.service.DataError
 import com.timecat.layout.ui.business.breadcrumb.Path
 import com.timecat.layout.ui.entity.BaseAdapter
@@ -25,6 +22,9 @@ import com.timecat.middle.block.support.ChangeReminderService
 import com.timecat.middle.block.support.HabitService
 import com.timecat.middle.block.view.ThingAction
 import eu.davidea.flexibleadapter.items.IFlexible
+import kotlinx.coroutines.runBlocking
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * @author 林学渊
@@ -207,30 +207,109 @@ interface ItemGetterListener {
 }
 
 interface IDatabase {
+    fun deleteBatch(record: List<RoomRecord>) {
+        record.forEach {
+            it.setDeleted(true)
+        }
+        updateRoomRecords(record)
+    }
+
+    fun archiveBatch(record: List<RoomRecord>) {
+        record.forEach {
+            it.setArchived(true)
+        }
+        updateRoomRecords(record)
+    }
+
+    fun updateRoomRecords(vararg record: RoomRecord) = updateRoomRecords(record.toList())
+
     fun updateRecord(record: RoomRecord)
     fun insertRecord(record: RoomRecord)
     fun deleteRecord(record: RoomRecord)
     fun replaceRecord(record: RoomRecord)
-    fun hardDeleteBatch(uuids: List<String>)
-    fun deleteBatch(uuids: List<String>)
-    fun archiveBatch(uuids: List<String>)
-    fun updateRoomRecords(vararg record: RoomRecord)
-    fun updateRoomRecords(records: List<RoomRecord>) = updateRoomRecords(*records.toTypedArray())
-    fun getByUuid(uuid: String): RoomRecord?
+    fun hardDeleteBatch(record: List<RoomRecord>)
+    fun updateRoomRecords(records: List<RoomRecord>)
 
-    fun getAllLiveChildren(uuid: String, order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
-    fun getAllLiveMessage(uuid: String, offset: Int, pageSize: Int): MutableList<RoomRecord>
-    fun getAllRecords(order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
-    fun getAllTimeRecords(fromTs: Long, toTs: Long, order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
-    fun getAllByTypeAndSubtype(type: Int, subType: Int, order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
-    fun searchAll(query: String, order: Int, asc: Boolean, offset: Int, pageSize: Int): MutableList<RoomRecord>
+    fun getByUuid(uuid: String): RoomRecord? = runBlocking {
+        suspendCoroutine { cb ->
+            getByUuid(uuid) {
+                onSuccess = {
+                    cb.resume(it)
+                }
+                onEmpty = {
+                    cb.resume(null)
+                }
+                onError = {
+                    cb.resume(null)
+                }
+            }
+        }
+    }
 
-    fun getAllRecordData(all: List<RoomRecord>, listener: RecordDao.OnRecordDataLoaded)
-    fun getAllData(all: List<RoomRecord>, listener: RecordDao.OnDataLoaded)
+    fun getByUuid(
+        uuid: String,
+        callback: RequestSingleOrNullCallback<RoomRecord>.() -> Unit
+    )
 
-    fun getAllTags(uuid: List<String>): List<Tag>
-    fun getAllTags(): List<Tag>
-    fun insertTag(tag: Tag)
+    fun getAllLiveChildren(
+        uuid: String,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    )
+
+    fun getAllLiveMessage(
+        uuid: String,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    )
+
+    fun getAllRecords(
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    )
+
+    fun getAllTimeRecords(
+        fromTs: Long, toTs: Long,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    )
+
+    fun getAllByTypeAndSubtype(
+        type: Int, subType: Int,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    )
+
+    fun searchAll(
+        query: String,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    )
+}
+
+open class RequestListCallback<T> {
+    var onError: (DataError) -> Unit = {}
+    var onEmpty: () -> Unit = {}
+    var onSuccess: (MutableList<T>) -> Unit = {}
+    var onComplete: () -> Unit = {}
+}
+
+open class RequestSingleOrNullCallback<T> : RequestSingleCallback<T>() {
+    var onEmpty: () -> Unit = {}
+}
+
+open class RequestSingleCallback<T> : SimpleRequestCallback<T>() {
+    var onComplete: () -> Unit = {}
+}
+
+open class SimpleRequestCallback<T> {
+    var onError: (DataError) -> Unit = {}
+    var onSuccess: (T) -> Unit = {}
 }
 
 const val ONLINE_SCHEMA = "online://block/"
