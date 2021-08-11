@@ -6,6 +6,7 @@ import android.text.Editable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.EditText
+import androidx.lifecycle.ViewModelStoreOwner
 import com.google.android.material.chip.Chip
 import com.gturedi.views.StatefulLayout
 import com.same.lib.core.ActionBarMenu
@@ -39,11 +40,13 @@ interface HomeService : DatabaseContext, PathContext, ItemGetterListener {
     fun statefulView(): StatefulLayout?
     fun inputEditText(): EditText
     fun itemCommonListener(): ItemCommonListener
+    fun viewModelStoreOwner(): ViewModelStoreOwner
 
     fun reloadDatabase()
     fun reloadData()
     fun reloadData(data: List<BaseItem<*>>)
 
+    fun closeDrawerIfCan()
     fun restoreSelection()
     fun destroyActionMode()
     fun updateContextTitle(count: Int)
