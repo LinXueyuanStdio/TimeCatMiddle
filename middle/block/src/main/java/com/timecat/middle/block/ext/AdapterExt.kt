@@ -18,7 +18,7 @@ fun configAdapterEndlessLoad(
     pageSize: Int,
     endlessScrollThreshold: Int,
     notMoreItem: BaseItem<*>,
-    listener: ItemCommonListener
+    loadMore: (lastPosition: Int, currentPage: Int) -> Unit
 ) {
     adapter.isTopEndless = isTopEndless
     adapter.endlessPageSize = pageSize
@@ -28,7 +28,7 @@ fun configAdapterEndlessLoad(
         }
 
         override fun onLoadMore(lastPosition: Int, currentPage: Int) {
-            listener.loadMore(lastPosition, currentPage)
+            loadMore(lastPosition, currentPage)
         }
     }, notMoreItem)
 }

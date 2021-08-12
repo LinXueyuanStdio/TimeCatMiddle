@@ -42,6 +42,7 @@ dependencies {
 
     api rootProject.ext.dependencies["kotlinx-coroutines-android"]
     api rootProject.ext.dependencies["kotlinx-coroutines-core"]
+    api rootProject.ext.androidx_lib["lifecycle-runtime-ktx"]
 
     api rootProject.ext.androidx_lib["appcompat"]
     api rootProject.ext.androidx_lib["cardview"]

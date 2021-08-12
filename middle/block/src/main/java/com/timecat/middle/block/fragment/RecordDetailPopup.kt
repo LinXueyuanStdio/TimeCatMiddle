@@ -30,7 +30,7 @@ class RecordDetailPopup(
     var listener: Listener
 ) {
     interface Listener {
-        fun getRecordById(id: String): RoomRecord
+        fun getRecordById(id: String, callback:(RoomRecord)->Unit)
 
         fun pin(pin: Boolean)
         fun archive(archive: Boolean)
@@ -59,10 +59,10 @@ class RecordDetailPopup(
         fun speakLoud(iv: ImageView, tv: TextView)
     }
 
-    private var record: RoomRecord
     private var rv: RecyclerView
-    private var data: MutableList<ConfigItem>
-    private var multipleItemConfigAdapter: ConfigAdapter
+    private lateinit var record: RoomRecord
+    private lateinit var data: MutableList<ConfigItem>
+    private lateinit var multipleItemConfigAdapter: ConfigAdapter
     private val view: View = LayoutInflater.from(parent.context).inflate(
         R.layout.view_popup_detail_record, null, false
     )
@@ -78,7 +78,6 @@ class RecordDetailPopup(
         popupWindow.animationStyle = R.style.popup_window_animation
         popupWindow.showAtLocation(parent, 17, 0, 0)
 
-        record = listener.getRecordById(id)
 
         val root: View = view.findViewById(R.id.root)
         root.setOnClickListener { popupWindow.dismiss() }
@@ -87,24 +86,30 @@ class RecordDetailPopup(
 
         rv = view.findViewById(R.id.rv)
         rv.layoutManager = GridLayoutManager(view.context, 4)
-        data = getItems(record)
-        multipleItemConfigAdapter = ConfigAdapter(data)
-        multipleItemConfigAdapter.setGridSpanSizeLookup { _, _, position ->
-            data[position].spanSize
+
+        listener.getRecordById(id) {
+            record = it
+            data = getItems(record)
+            multipleItemConfigAdapter = ConfigAdapter(data)
+            multipleItemConfigAdapter.setGridSpanSizeLookup { _, _, position ->
+                data[position].spanSize
+            }
+
+            val v = View(view.context)
+            val p = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400)
+            v.layoutParams = p
+            multipleItemConfigAdapter.addFooterView(v)
+
+            rv.adapter = multipleItemConfigAdapter
         }
-
-        val v = View(view.context)
-        val p = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400)
-        v.layoutParams = p
-        multipleItemConfigAdapter.addFooterView(v)
-
-        rv.adapter = multipleItemConfigAdapter
     }
 
     private fun refreshData() {
         rv.postDelayed({
-            val a = listener.getRecordById(id)
-            multipleItemConfigAdapter.replaceData(getItems(a))
+            listener.getRecordById(id) {
+                record = it
+                multipleItemConfigAdapter.replaceData(getItems(record))
+            }
         }, 500)
     }
 
