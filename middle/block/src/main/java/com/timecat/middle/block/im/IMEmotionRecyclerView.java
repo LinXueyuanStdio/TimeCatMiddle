@@ -5,11 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.timecat.middle.block.R;
 import com.timecat.middle.block.adapter.VMAdapter;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by lzan13 on 2019/05/29 15:00
@@ -79,16 +79,16 @@ public class IMEmotionRecyclerView extends RelativeLayout {
     private void initRecyclerView() {
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), mColumnCount));
         mAdapter = new IMEmotionRecyclerAdapter(getContext(), mEmotionGroup);
-        mAdapter.setClickListener(new VMAdapter.IClickListener() {
+        mAdapter.setClickListener(new VMAdapter.IClickListener<IMEmotionItem>() {
             @Override
-            public void onItemAction(int action, Object object) {
+            public void onItemAction(int action, IMEmotionItem object) {
                 if (mInnerListener != null) {
                     mInnerListener.onEmotionClick(mEmotionGroup, (IMEmotionItem) object);
                 }
             }
 
             @Override
-            public boolean onItemLongAction(int action, Object object) {
+            public boolean onItemLongAction(int action, IMEmotionItem object) {
                 return false;
             }
         });
