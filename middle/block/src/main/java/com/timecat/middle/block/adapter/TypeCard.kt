@@ -8,7 +8,6 @@ import com.timecat.layout.ui.entity.BaseItem
 import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.middle.block.R
 import com.timecat.middle.block.adapter.vh.BaseRecordCardVH
-import com.timecat.module.master.adapter.item.virtual.TypeItem
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IExpandable
 import eu.davidea.flexibleadapter.items.IFlexible

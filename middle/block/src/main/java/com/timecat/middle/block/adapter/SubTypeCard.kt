@@ -15,7 +15,6 @@ import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.layout.ui.utils.ColorUtils
 import com.timecat.middle.block.R
 import com.timecat.middle.block.adapter.vh.AbsRecordCardVH
-import com.timecat.module.master.adapter.item.virtual.SubItem
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 

@@ -1,8 +1,4 @@
-package com.timecat.module.master.adapter.item.virtual
-
-import com.timecat.identity.data.base.*
-import com.timecat.identity.data.block.type.*
-import com.timecat.identity.readonly.RouterHub
+package com.timecat.middle.block.adapter
 
 /**
  * @author 林学渊
