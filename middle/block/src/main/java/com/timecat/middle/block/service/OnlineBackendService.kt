@@ -10,5 +10,5 @@ import android.content.Context
  * @usage null
  */
 interface OnlineBackendService {
-    fun buildBackend(context: Context, url: String): IDatabase?
+    fun buildBackend(context: Context, url: String): IDatabase
 }
