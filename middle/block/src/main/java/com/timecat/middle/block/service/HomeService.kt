@@ -14,6 +14,7 @@ import com.same.lib.core.ActionBarMenuItem
 import com.same.lib.core.BasePage
 import com.timecat.data.room.AppRoomDatabase
 import com.timecat.data.room.record.RoomRecord
+import com.timecat.element.alert.ToastUtil
 import com.timecat.identity.data.service.DataError
 import com.timecat.layout.ui.business.breadcrumb.Path
 import com.timecat.layout.ui.entity.BaseAdapter
@@ -55,7 +56,7 @@ interface HomeService : DatabaseContext, PathContext, ItemGetterListener {
 }
 
 interface DatabaseContext {
-    fun loadDatabase(database: IDatabase)
+    fun loadDatabase(url: String, database: IDatabase)
     fun loadContextRecord(record: RoomRecord?)
 }
 
@@ -200,13 +201,32 @@ interface PlayAudioCallback {
 interface ItemGetterListener {
     fun adapter(): BaseAdapter
     fun primaryDb(): IDatabase
-    fun secondaryDb(url: String): IDatabase
+    fun secondaryDb(url: String, callback: LoadDbCallback)
+    fun secondaryDb(url: String, callback: (IDatabase) -> Unit) {
+        secondaryDb(url, object : SimpleLoadDbCallback() {
+            override fun onSuccess(remoteDb: IDatabase) {
+                callback(remoteDb)
+            }
+        })
+    }
+
     fun appDatabase(): AppRoomDatabase
     fun popupParentView(): View
     fun habitService(): HabitService?
     fun changeReminderService(): ChangeReminderService?
     fun navigateTo(name: String, uuid: String, type: Int = -1)
     fun resetTo(path: Path)
+}
+
+interface LoadDbCallback {
+    fun onSuccess(remoteDb: IDatabase)
+    fun onFail(text: String, retry: () -> Unit)
+}
+
+abstract class SimpleLoadDbCallback : LoadDbCallback {
+    override fun onFail(text: String, retry: () -> Unit) {
+        ToastUtil.e_long(text)
+    }
 }
 
 interface IDatabase {
