@@ -210,6 +210,7 @@ interface ItemGetterListener {
         })
     }
 
+    fun contextRecord(): RoomRecord?
     fun appDatabase(): AppRoomDatabase
     fun popupParentView(): View
     fun habitService(): HabitService?
