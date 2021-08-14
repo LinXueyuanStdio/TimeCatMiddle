@@ -6,6 +6,7 @@ import com.timecat.element.alert.ToastUtil
 import com.timecat.identity.service.ImageSelectService
 import com.timecat.identity.service.ImageUploadService
 import com.timecat.identity.service.UploadCallback
+import com.timecat.layout.ui.utils.IconLoader
 
 /**
  * @author 林学渊
@@ -14,21 +15,30 @@ import com.timecat.identity.service.UploadCallback
  * @description null
  * @usage null
  */
+fun String.isRandomImgUrl(): Boolean {
+    return startsWith(IconLoader.AVATAR_SCHEME) or startsWith(IconLoader.COVER_SCHEME)
+}
+
 fun selectImg(activity: Context, uploader: ImageUploadService?, selector: ImageSelectService?, isAvatar: Boolean, setImg: (String) -> Unit) {
     if (activity is Activity) {
         val onSelect: (String) -> Unit = { path ->
             if (uploader == null) {
                 setImg(path)
             } else {
-                uploader.upload(activity, path, object : UploadCallback {
-                    override fun onSuccess(url: String) {
-                        setImg(url)
-                    }
+                if (path.isRandomImgUrl()) {
+                    //随机图不需要上传
+                    setImg(path)
+                } else {
+                    uploader.upload(activity, path, object : UploadCallback {
+                        override fun onSuccess(url: String) {
+                            setImg(url)
+                        }
 
-                    override fun onFail(e: String) {
-                        setImg(path)
-                    }
-                })
+                        override fun onFail(e: String) {
+                            setImg(path)
+                        }
+                    })
+                }
             }
         }
         if (isAvatar) {
