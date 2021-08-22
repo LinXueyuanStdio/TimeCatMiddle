@@ -76,7 +76,13 @@ open class EmptyInputContext : InputContext {
 }
 
 open class EmptyMenuContext : MenuContext {
-    override fun configActionMenu(actionMode: ActionBarMenu, actionModeViews: MutableList<View>, iconColor: Int) {}
+    override fun configActionMenu(
+        actionMode: ActionBarMenu,
+        actionModeViews: MutableList<View>,
+        iconColor: Int
+    ) {
+    }
+
     override fun onActionMenuClick(actionMode: ActionBarMenu, id: Int) {}
     override fun configStatusMenu(view: ActionBarMenuItem) {}
     override fun onStatusMenuClick(view: ActionBarMenuItem) {}
@@ -98,7 +104,12 @@ interface InputContext {
 }
 
 interface MenuContext {
-    fun configActionMenu(actionMode: ActionBarMenu, actionModeViews: MutableList<View>, iconColor: Int)
+    fun configActionMenu(
+        actionMode: ActionBarMenu,
+        actionModeViews: MutableList<View>,
+        iconColor: Int
+    )
+
     fun onActionMenuClick(actionMode: ActionBarMenu, id: Int)
     fun configStatusMenu(view: ActionBarMenuItem)
     fun onStatusMenuClick(view: ActionBarMenuItem)
@@ -248,7 +259,27 @@ interface IDatabase {
     fun updateRoomRecords(vararg record: RoomRecord) = updateRoomRecords(record.toList())
 
     fun updateRecord(record: RoomRecord)
-    fun insertRecord(record: RoomRecord)
+    fun insertRecord(record: RoomRecord): RoomRecord? = runBlocking {
+        suspendCoroutine { cb ->
+            insertRecord(record) {
+                onSuccess = {
+                    cb.resume(it)
+                }
+                onEmpty = {
+                    cb.resume(null)
+                }
+                onError = {
+                    cb.resume(null)
+                }
+            }
+        }
+    }
+
+    fun insertRecord(
+        record: RoomRecord,
+        callback: RequestSingleOrNullCallback<RoomRecord>.() -> Unit
+    )
+
     fun deleteRecord(record: RoomRecord)
     fun replaceRecord(record: RoomRecord)
     fun hardDeleteBatch(record: List<RoomRecord>)
