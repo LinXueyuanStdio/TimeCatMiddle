@@ -13,6 +13,12 @@ import com.timecat.layout.ui.entity.BaseItem
  * @usage null
  */
 interface ContainerService {
+    fun loadFor(
+        parentPath: Path,
+        record: RoomRecord,
+        onParse: (name: String, uuid: String, type: Int) -> Unit
+    ) {}
+
     /**
      * 加载前置上下文
      *
@@ -30,18 +36,35 @@ interface ContainerService {
      *    则在 loadContext 中使用 record:RoomRecord 构建其 subDatabase:IDatabase
      *    subDatabase:IDatabase 可用于 loadData / loadMoreData
      */
-    fun loadContextRecord(path: Path, context: Context, parentUuid: String, homeService: HomeService)
+    fun loadContextRecord(
+        path: Path,
+        context: Context,
+        parentUuid: String,
+        homeService: HomeService
+    )
 
     /**
      * 加载上下文
      */
-    fun loadContext(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService)
+    fun loadContext(
+        path: Path,
+        context: Context,
+        parentUuid: String,
+        record: RoomRecord?,
+        homeService: HomeService
+    )
 
     /**
      * 加载列表项
      * 无尽加载模式时，则为加载第一批数据
      */
-    fun loadForVirtualPath(context: Context, parentUuid: String, homeService: HomeService, callback: LoadCallback)
+    fun loadForVirtualPath(
+        context: Context,
+        parentUuid: String,
+        homeService: HomeService,
+        callback: LoadCallback
+    )
+
     interface LoadCallback {
         fun onEmpty(text: String, retry: () -> Unit)
         fun onError(text: String, retry: () -> Unit)
@@ -49,13 +72,21 @@ interface ContainerService {
         fun onVirtualLoadSuccess(items: List<BaseItem<*>>)
     }
 
-    fun loadMoreForVirtualPath(context: Context, parentUuid: String, offset: Int, homeService: HomeService, callback: LoadMoreCallback)
+    fun loadMoreForVirtualPath(
+        context: Context,
+        parentUuid: String,
+        offset: Int,
+        homeService: HomeService,
+        callback: LoadMoreCallback
+    )
+
     interface LoadMoreCallback {
         fun onEmpty(text: String)
         fun onError(text: String)
         fun onLoading(text: String)
         fun onVirtualLoadSuccess(items: List<BaseItem<*>>)
     }
+
     /**
      * 回收当前上下文
      */
