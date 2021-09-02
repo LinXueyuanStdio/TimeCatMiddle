@@ -123,8 +123,8 @@ abstract class SearchablePage : ViewModelPage() {
 
     open fun configMenu(context: Context, menu: ActionBarMenu) {}
 
-    abstract fun getSearchResults(context: Context): List<BaseItem<*>>
-    open fun getMoreSearchResults(context: Context): List<BaseItem<*>> = listOf()
+    abstract suspend fun getSearchResults(context: Context): List<BaseItem<*>>
+    open suspend fun getMoreSearchResults(context: Context): List<BaseItem<*>> = listOf()
     //endregion
 
     override fun createView(context: Context): View {
