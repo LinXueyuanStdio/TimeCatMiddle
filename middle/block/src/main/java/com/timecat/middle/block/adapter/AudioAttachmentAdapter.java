@@ -13,10 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.timecat.middle.block.R;
 import com.timecat.middle.block.base.BaseViewHolder;
 import com.timecat.middle.block.util.DateTimeUtil;
@@ -28,6 +24,10 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.util.List;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * Created by ywwynm on 2015/10/4. adapter for audio attachment
  */
@@ -37,8 +37,6 @@ public class AudioAttachmentAdapter extends
     public static final String TAG = "AudioAttachmentAdapter";
 
     private Context context;
-
-    private int mAccentColor;
 
     private boolean mEditable;
 
@@ -54,10 +52,9 @@ public class AudioAttachmentAdapter extends
     private AttachmentInfo attachmentInfo;
 
     public AudioAttachmentAdapter(
-            Context context, int accentColor, boolean editable, List<String> items,
+            Context context, boolean editable, List<String> items,
             RemoveCallback callback, AttachmentInfo attachmentInfo) {
         this.context = context;
-        mAccentColor = accentColor;
         mEditable = editable;
         mInflater = LayoutInflater.from(context);
         mItems = items;
@@ -194,7 +191,7 @@ public class AudioAttachmentAdapter extends
 
     public interface AttachmentInfo {
 
-        void showAudioAttachmentInfoDialog(int accentColor, String typePathName);
+        void showAudioAttachmentInfoDialog(String typePathName);
     }
 
     class AudioCardViewHolder extends BaseViewHolder {
@@ -234,7 +231,7 @@ public class AudioAttachmentAdapter extends
                 public void onClick(View v) {
                     String item = mItems.get(AudioCardViewHolder.this.getAdapterPosition());
                     if (attachmentInfo != null) {
-                        attachmentInfo.showAudioAttachmentInfoDialog(mAccentColor, item);
+                        attachmentInfo.showAudioAttachmentInfoDialog(item);
                     }
                 }
             });

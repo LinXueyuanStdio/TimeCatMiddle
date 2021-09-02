@@ -24,7 +24,6 @@ import com.timecat.middle.block.support.ChangeReminderService
 import com.timecat.middle.block.support.HabitService
 import com.timecat.middle.block.view.ThingAction
 import eu.davidea.flexibleadapter.items.IFlexible
-import kotlinx.coroutines.runBlocking
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -259,18 +258,16 @@ interface IDatabase {
     fun updateRoomRecords(vararg record: RoomRecord) = updateRoomRecords(record.toList())
 
     fun updateRecord(record: RoomRecord)
-    fun insertRecord(record: RoomRecord): RoomRecord? = runBlocking {
-        suspendCoroutine { cb ->
-            insertRecord(record) {
-                onSuccess = {
-                    cb.resume(it)
-                }
-                onEmpty = {
-                    cb.resume(null)
-                }
-                onError = {
-                    cb.resume(null)
-                }
+    suspend fun insertRecord(record: RoomRecord): RoomRecord? = suspendCoroutine { cb ->
+        insertRecord(record) {
+            onSuccess = {
+                cb.resume(it)
+            }
+            onEmpty = {
+                cb.resume(null)
+            }
+            onError = {
+                cb.resume(null)
             }
         }
     }
@@ -285,18 +282,16 @@ interface IDatabase {
     fun hardDeleteBatch(record: List<RoomRecord>)
     fun updateRoomRecords(records: List<RoomRecord>)
 
-    fun getByUuid(uuid: String): RoomRecord? = runBlocking {
-        suspendCoroutine { cb ->
-            getByUuid(uuid) {
-                onSuccess = {
-                    cb.resume(it)
-                }
-                onEmpty = {
-                    cb.resume(null)
-                }
-                onError = {
-                    cb.resume(null)
-                }
+    suspend fun getByUuid(uuid: String): RoomRecord? = suspendCoroutine { cb ->
+        getByUuid(uuid) {
+            onSuccess = {
+                cb.resume(it)
+            }
+            onEmpty = {
+                cb.resume(null)
+            }
+            onError = {
+                cb.resume(null)
             }
         }
     }
@@ -306,18 +301,16 @@ interface IDatabase {
         callback: RequestSingleOrNullCallback<RoomRecord>.() -> Unit
     )
 
-    fun getByUuids(uuid: List<String>): List<RoomRecord> = runBlocking {
-        suspendCoroutine { cb ->
-            getByUuids(uuid) {
-                onSuccess = {
-                    cb.resume(it)
-                }
-                onEmpty = {
-                    cb.resume(listOf())
-                }
-                onError = {
-                    cb.resume(listOf())
-                }
+    suspend fun getByUuids(uuid: List<String>): List<RoomRecord> = suspendCoroutine { cb ->
+        getByUuids(uuid) {
+            onSuccess = {
+                cb.resume(it)
+            }
+            onEmpty = {
+                cb.resume(listOf())
+            }
+            onError = {
+                cb.resume(listOf())
             }
         }
     }
@@ -327,22 +320,20 @@ interface IDatabase {
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
 
-    fun getAllLiveChildren(
+    suspend fun getAllLiveChildren(
         uuid: String,
         order: Int, asc: Boolean,
         offset: Int, pageSize: Int,
-    ): List<RoomRecord> = runBlocking {
-        suspendCoroutine { cb ->
-            getAllLiveChildren(uuid, order, asc, offset, pageSize) {
-                onSuccess = {
-                    cb.resume(it)
-                }
-                onEmpty = {
-                    cb.resume(listOf())
-                }
-                onError = {
-                    cb.resume(listOf())
-                }
+    ): List<RoomRecord> = suspendCoroutine { cb ->
+        getAllLiveChildren(uuid, order, asc, offset, pageSize) {
+            onSuccess = {
+                cb.resume(it)
+            }
+            onEmpty = {
+                cb.resume(listOf())
+            }
+            onError = {
+                cb.resume(listOf())
             }
         }
     }
@@ -354,21 +345,19 @@ interface IDatabase {
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
 
-    fun getAllLiveMessage(
+    suspend fun getAllLiveMessage(
         uuid: String,
         offset: Int, pageSize: Int,
-    ): List<RoomRecord> = runBlocking {
-        suspendCoroutine { cb ->
-            getAllLiveMessage(uuid, offset, pageSize) {
-                onSuccess = {
-                    cb.resume(it)
-                }
-                onEmpty = {
-                    cb.resume(listOf())
-                }
-                onError = {
-                    cb.resume(listOf())
-                }
+    ): List<RoomRecord> = suspendCoroutine { cb ->
+        getAllLiveMessage(uuid, offset, pageSize) {
+            onSuccess = {
+                cb.resume(it)
+            }
+            onEmpty = {
+                cb.resume(listOf())
+            }
+            onError = {
+                cb.resume(listOf())
             }
         }
     }
@@ -379,21 +368,19 @@ interface IDatabase {
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
 
-    fun getAllRecords(
+    suspend fun getAllRecords(
         order: Int, asc: Boolean,
         offset: Int, pageSize: Int,
-    ): List<RoomRecord> = runBlocking {
-        suspendCoroutine { cb ->
-            getAllRecords(order, asc, offset, pageSize) {
-                onSuccess = {
-                    cb.resume(it)
-                }
-                onEmpty = {
-                    cb.resume(listOf())
-                }
-                onError = {
-                    cb.resume(listOf())
-                }
+    ): List<RoomRecord> = suspendCoroutine { cb ->
+        getAllRecords(order, asc, offset, pageSize) {
+            onSuccess = {
+                cb.resume(it)
+            }
+            onEmpty = {
+                cb.resume(listOf())
+            }
+            onError = {
+                cb.resume(listOf())
             }
         }
     }
@@ -404,22 +391,20 @@ interface IDatabase {
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
 
-    fun getAllTimeRecords(
+    suspend fun getAllTimeRecords(
         fromTs: Long, toTs: Long,
         order: Int, asc: Boolean,
         offset: Int, pageSize: Int,
-    ): List<RoomRecord> = runBlocking {
-        suspendCoroutine { cb ->
-            getAllTimeRecords(fromTs, toTs, order, asc, offset, pageSize) {
-                onSuccess = {
-                    cb.resume(it)
-                }
-                onEmpty = {
-                    cb.resume(listOf())
-                }
-                onError = {
-                    cb.resume(listOf())
-                }
+    ): List<RoomRecord> = suspendCoroutine { cb ->
+        getAllTimeRecords(fromTs, toTs, order, asc, offset, pageSize) {
+            onSuccess = {
+                cb.resume(it)
+            }
+            onEmpty = {
+                cb.resume(listOf())
+            }
+            onError = {
+                cb.resume(listOf())
             }
         }
     }
@@ -431,22 +416,20 @@ interface IDatabase {
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
 
-    fun getAllByTypeAndSubtype(
+    suspend fun getAllByTypeAndSubtype(
         type: Int, subType: Int,
         order: Int, asc: Boolean,
         offset: Int, pageSize: Int,
-    ): List<RoomRecord> = runBlocking {
-        suspendCoroutine { cb ->
-            getAllByTypeAndSubtype(type, subType, order, asc, offset, pageSize) {
-                onSuccess = {
-                    cb.resume(it)
-                }
-                onEmpty = {
-                    cb.resume(listOf())
-                }
-                onError = {
-                    cb.resume(listOf())
-                }
+    ): List<RoomRecord> = suspendCoroutine { cb ->
+        getAllByTypeAndSubtype(type, subType, order, asc, offset, pageSize) {
+            onSuccess = {
+                cb.resume(it)
+            }
+            onEmpty = {
+                cb.resume(listOf())
+            }
+            onError = {
+                cb.resume(listOf())
             }
         }
     }
@@ -458,22 +441,20 @@ interface IDatabase {
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
 
-    fun searchAll(
+    suspend fun searchAll(
         query: String,
         order: Int, asc: Boolean,
         offset: Int, pageSize: Int,
-    ): List<RoomRecord> = runBlocking {
-        suspendCoroutine { cb ->
-            searchAll(query, order, asc, offset, pageSize) {
-                onSuccess = {
-                    cb.resume(it)
-                }
-                onEmpty = {
-                    cb.resume(listOf())
-                }
-                onError = {
-                    cb.resume(listOf())
-                }
+    ): List<RoomRecord> = suspendCoroutine { cb ->
+        searchAll(query, order, asc, offset, pageSize) {
+            onSuccess = {
+                cb.resume(it)
+            }
+            onEmpty = {
+                cb.resume(listOf())
+            }
+            onError = {
+                cb.resume(listOf())
             }
         }
     }
