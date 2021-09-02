@@ -220,6 +220,18 @@ interface ItemGetterListener {
         })
     }
 
+    suspend fun secondaryDb(url: String): IDatabase? = suspendCoroutine {
+        secondaryDb(url, object : LoadDbCallback {
+            override fun onSuccess(remoteDb: IDatabase) {
+                it.resume(remoteDb)
+            }
+
+            override fun onFail(text: String, retry: () -> Unit) {
+                it.resume(null)
+            }
+        })
+    }
+
     fun contextRecord(): RoomRecord?
     fun appDatabase(): AppRoomDatabase
     fun popupParentView(): View
