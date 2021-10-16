@@ -453,6 +453,31 @@ interface IDatabase {
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
 
+    suspend fun getAllByTypeAndSubtype(
+        type: Int, subTypes: List<Int>,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+    ): List<RoomRecord> = suspendCoroutine { cb ->
+        getAllByTypeAndSubtype(type, subTypes, order, asc, offset, pageSize) {
+            onSuccess = {
+                cb.resume(it)
+            }
+            onEmpty = {
+                cb.resume(listOf())
+            }
+            onError = {
+                cb.resume(listOf())
+            }
+        }
+    }
+
+    fun getAllByTypeAndSubtype(
+        type: Int, subTypes: List<Int>,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    )
+
     suspend fun searchAll(
         query: String,
         order: Int, asc: Boolean,
