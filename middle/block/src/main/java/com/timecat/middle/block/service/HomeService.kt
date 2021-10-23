@@ -159,7 +159,17 @@ abstract class TypeChip @JvmOverloads constructor(
 
 interface ItemCommonListener :
     ItemActionListener,
-    ItemGetterListener
+    ItemGetterListener,
+    ItemCardListener
+
+interface ItemCardListener : CardBuilder {
+    fun resetCardFactory()
+    fun setCurrentCardFactory(factory: CardFactory)
+    fun getCurrentCardFactory(): CardFactory
+    override suspend fun buildOneCard(record: RoomRecord, context: Context, commonListener: ItemCommonListener): BaseRecordItem<*> {
+        return getCurrentCardFactory().buildOneCard(record, context, commonListener)
+    }
+}
 
 interface ItemActionListener {
     fun loadFor(record: RoomRecord)
@@ -514,6 +524,104 @@ open class RequestSingleOrNullCallback<T> {
     var onError: (DataError) -> Unit = {}
     var onEmpty: () -> Unit = {}
     var onSuccess: (T) -> Unit = {}
+}
+
+class EmptyDatabase : IDatabase {
+    override fun updateRecord(record: RoomRecord) {
+    }
+
+    override fun insertRecord(
+        record: RoomRecord,
+        callback: RequestSingleOrNullCallback<RoomRecord>.() -> Unit
+    ) {
+        val cb = RequestSingleOrNullCallback<RoomRecord>().apply(callback)
+        cb.onEmpty()
+    }
+
+    override fun deleteRecord(record: RoomRecord) {
+    }
+
+    override fun replaceRecord(record: RoomRecord) {
+    }
+
+    override fun hardDeleteBatch(record: List<RoomRecord>) {
+    }
+
+    override fun updateRoomRecords(records: List<RoomRecord>) {
+    }
+
+    override fun getByUuid(
+        uuid: String,
+        callback: RequestSingleOrNullCallback<RoomRecord>.() -> Unit
+    ) {
+        val cb = RequestSingleOrNullCallback<RoomRecord>().apply(callback)
+        cb.onEmpty()
+    }
+
+    fun runSql(callback: RequestListCallback<RoomRecord>.() -> Unit) {
+        val cb = RequestListCallback<RoomRecord>().apply(callback)
+        cb.onEmpty()
+    }
+
+    override fun getByUuids(uuid: List<String>, callback: RequestListCallback<RoomRecord>.() -> Unit) {
+        runSql(callback)
+    }
+
+    override fun getAllLiveChildren(
+        uuid: String,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    ) {
+        runSql(callback)
+    }
+
+    override fun getAllLiveMessage(
+        uuid: String,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    ) {
+        runSql(callback)
+    }
+
+    override fun getAllRecords(
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    ) {
+        runSql(callback)
+    }
+
+    override fun getAllTimeRecords(
+        fromTs: Long, toTs: Long,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    ) {
+        runSql(callback)
+    }
+
+    override fun getAllByTypeAndSubtype(
+        type: Int, subType: Int,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    ) {
+        runSql(callback)
+    }
+
+    override fun getAllByTypeAndSubtype(type: Int, subTypes: List<Int>, order: Int, asc: Boolean, offset: Int, pageSize: Int, callback: RequestListCallback<RoomRecord>.() -> Unit) {
+        runSql(callback)
+    }
+
+    override fun searchAll(
+        query: String,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    ) {
+        runSql(callback)
+    }
 }
 
 const val ONLINE_SCHEMA = "online://block/"
