@@ -488,6 +488,31 @@ interface IDatabase {
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
 
+    suspend fun getAllByTypeAndSubtypeAndUuids(
+        type: Int, subTypes: List<Int>, uuids: List<String>,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+    ): List<RoomRecord> = suspendCoroutine { cb ->
+        getAllByTypeAndSubtypeAndUuids(type, subTypes, uuids, order, asc, offset, pageSize) {
+            onSuccess = {
+                cb.resume(it)
+            }
+            onEmpty = {
+                cb.resume(listOf())
+            }
+            onError = {
+                cb.resume(listOf())
+            }
+        }
+    }
+
+    fun getAllByTypeAndSubtypeAndUuids(
+        type: Int, subTypes: List<Int>, uuids: List<String>,
+        order: Int, asc: Boolean,
+        offset: Int, pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    )
+
     suspend fun searchAll(
         query: String,
         order: Int, asc: Boolean,
@@ -611,6 +636,19 @@ class EmptyDatabase : IDatabase {
     }
 
     override fun getAllByTypeAndSubtype(type: Int, subTypes: List<Int>, order: Int, asc: Boolean, offset: Int, pageSize: Int, callback: RequestListCallback<RoomRecord>.() -> Unit) {
+        runSql(callback)
+    }
+
+    override fun getAllByTypeAndSubtypeAndUuids(
+        type: Int,
+        subTypes: List<Int>,
+        uuids: List<String>,
+        order: Int,
+        asc: Boolean,
+        offset: Int,
+        pageSize: Int,
+        callback: RequestListCallback<RoomRecord>.() -> Unit
+    ) {
         runSql(callback)
     }
 
