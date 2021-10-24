@@ -15,6 +15,7 @@ import com.timecat.middle.block.item.BaseRecordItem
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import org.joda.time.DateTime
+import org.json.JSONObject
 
 /**
  * @author dlink
@@ -52,7 +53,8 @@ class UnknownCard(
         holder.frontView.setShakelessClickListener {
             context.showDialog {
                 title(text = "未知类型")
-                message(text = record.toJson())
+                val json = JSONObject(record.toJson()).toString(2)
+                message(text = json)
                 positiveButton(R.string.ok)
                 negativeButton(R.string.cancel)
             }

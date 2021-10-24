@@ -4,6 +4,7 @@ import android.content.Context
 import com.timecat.component.router.app.NAV
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.identity.data.block.type.*
+import com.timecat.middle.block.adapter.SubItem
 import com.timecat.middle.block.adapter.UnknownCard
 import com.timecat.middle.block.item.BaseRecordItem
 
@@ -15,6 +16,9 @@ import com.timecat.middle.block.item.BaseRecordItem
  * @usage null
  */
 interface CardFactoryService {
+    fun buildCardFactory(): CardFactory
+}
+interface ReadOnlyCardFactoryService {
     fun buildCardFactory(): CardFactory
 }
 

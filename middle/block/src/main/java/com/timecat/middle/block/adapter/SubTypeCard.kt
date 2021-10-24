@@ -29,7 +29,7 @@ open class SubTypeCard(
     val item: SubItem,
     val context: Context,
     val listener: Listener
-) : BaseItem<SubTypeCard.TypeCardVH>(item.uuid) {
+) : BaseItem<SubTypeCard.TypeCardVH>(item.title + item.desc + item.uuid) {
     class TypeCardVH(v: View, adapter: FlexibleAdapter<*>) : AbsRecordCardVH(v, adapter) {
         val title: TextView = v.findViewById(R.id.title)
         val mTimerState: TextView = v.findViewById(R.id.state)

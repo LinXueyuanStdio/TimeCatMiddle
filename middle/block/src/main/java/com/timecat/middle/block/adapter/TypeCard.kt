@@ -21,7 +21,7 @@ import eu.davidea.flexibleadapter.items.IFlexible
  */
 class TypeCard(
     val item: TypeItem
-) : BaseItem<TypeCard.TypeCardVH>(item.title), IExpandable<TypeCard.TypeCardVH, BaseItem<*>> {
+) : BaseItem<TypeCard.TypeCardVH>(item.title + item.desc), IExpandable<TypeCard.TypeCardVH, BaseItem<*>> {
     class TypeCardVH(v: View, adapter: FlexibleAdapter<*>) : BaseRecordCardVH(v, adapter) {
         val title: TextView = v.findViewById(R.id.title)
 
