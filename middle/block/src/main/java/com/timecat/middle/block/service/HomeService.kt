@@ -488,12 +488,12 @@ interface IDatabase {
         callback: RequestListCallback<RoomRecord>.() -> Unit
     )
 
-    suspend fun getAllByTypeAndSubtypeAndUuids(
-        type: Int, subTypes: List<Int>, uuids: List<String>,
+    suspend fun getAllByTypeAndSubtypeAndTitle(
+        type: Int, subTypes: List<Int>, titles: List<String>,
         order: Int, asc: Boolean,
         offset: Int, pageSize: Int,
     ): List<RoomRecord> = suspendCoroutine { cb ->
-        getAllByTypeAndSubtypeAndUuids(type, subTypes, uuids, order, asc, offset, pageSize) {
+        getAllByTypeAndSubtypeAndTitle(type, subTypes, titles, order, asc, offset, pageSize) {
             onSuccess = {
                 cb.resume(it)
             }
@@ -506,8 +506,8 @@ interface IDatabase {
         }
     }
 
-    fun getAllByTypeAndSubtypeAndUuids(
-        type: Int, subTypes: List<Int>, uuids: List<String>,
+    fun getAllByTypeAndSubtypeAndTitle(
+        type: Int, subTypes: List<Int>, titles: List<String>,
         order: Int, asc: Boolean,
         offset: Int, pageSize: Int,
         callback: RequestListCallback<RoomRecord>.() -> Unit
@@ -639,10 +639,10 @@ class EmptyDatabase : IDatabase {
         runSql(callback)
     }
 
-    override fun getAllByTypeAndSubtypeAndUuids(
+    override fun getAllByTypeAndSubtypeAndTitle(
         type: Int,
         subTypes: List<Int>,
-        uuids: List<String>,
+        titles: List<String>,
         order: Int,
         asc: Boolean,
         offset: Int,
