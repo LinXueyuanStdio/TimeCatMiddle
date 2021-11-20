@@ -1,4 +1,4 @@
-package com.timecat.module.master.fragment.home.type
+package com.timecat.middle.block.service
 
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +24,6 @@ import com.timecat.data.room.record.RoomRecord
 import com.timecat.identity.data.block.type.BLOCK_CONTAINER
 import com.timecat.middle.block.R
 import com.timecat.middle.block.ext.prettyTitle
-import com.timecat.middle.block.service.IDatabase
 import kotlinx.coroutines.*
 import java.util.*
 
