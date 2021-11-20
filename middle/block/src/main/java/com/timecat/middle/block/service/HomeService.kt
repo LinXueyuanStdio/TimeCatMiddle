@@ -242,6 +242,9 @@ interface ItemGetterListener {
         })
     }
 
+    fun setPermission(permission: CardPermission)
+    fun getPermission(): CardPermission
+
     fun contextRecord(): RoomRecord?
     fun appDatabase(): AppRoomDatabase
     fun popupParentView(): View

@@ -4,7 +4,6 @@ import android.content.Context
 import com.timecat.component.router.app.NAV
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.identity.data.block.type.*
-import com.timecat.middle.block.adapter.SubItem
 import com.timecat.middle.block.adapter.UnknownCard
 import com.timecat.middle.block.item.BaseRecordItem
 
@@ -16,11 +15,38 @@ import com.timecat.middle.block.item.BaseRecordItem
  * @usage null
  */
 interface CardFactoryService {
-    fun buildCardFactory(): CardFactory
+    fun buildCardFactory(permission: CardPermission): CardFactory
 }
-interface ReadOnlyCardFactoryService {
-    fun buildCardFactory(): CardFactory
-}
+
+/**
+ * 经典皮肤
+ */
+interface NormalCardFactoryService : CardFactoryService
+
+/**
+ * header头部皮肤
+ */
+interface HeaderCardFactoryService : CardFactoryService
+
+/**
+ * timeline时间线皮肤
+ */
+interface TimelineCardFactoryService : CardFactoryService
+
+/**
+ * small皮肤
+ */
+interface SmallCardFactoryService : CardFactoryService
+
+/**
+ * 胶囊皮肤
+ */
+interface CapsuleCardFactoryService : CardFactoryService
+
+/**
+ * Big皮肤
+ */
+interface BigCardFactoryService : CardFactoryService
 
 interface CardBuilder {
     suspend fun buildCards(
