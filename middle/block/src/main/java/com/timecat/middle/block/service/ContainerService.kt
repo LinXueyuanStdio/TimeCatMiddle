@@ -12,17 +12,7 @@ import com.timecat.layout.ui.entity.BaseItem
  * @description null
  * @usage null
  */
-interface ParseCallback {
-    fun onParse(name: String, uuid: String, type: Int)
-}
-
 interface ContainerService {
-    fun loadFor(
-        parentPath: Path,
-        record: RoomRecord,
-        onParse: ParseCallback
-    ) {
-    }
 
     /**
      * 加载前置上下文
