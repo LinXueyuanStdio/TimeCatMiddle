@@ -1,5 +1,7 @@
 package com.timecat.middle.block.service
 
+import android.content.Context
+
 /**
  * @author 林学渊
  * @email linxy59@mail2.sysu.edu.cn
@@ -8,5 +10,5 @@ package com.timecat.middle.block.service
  * @usage null
  */
 interface MainRoomDbService {
-    fun build(): IDatabase
+    fun build(context: Context): IDatabase
 }
