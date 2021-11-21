@@ -1,5 +1,6 @@
 package com.timecat.middle.block.service
 
+import android.content.Context
 import com.timecat.component.router.app.NAV
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.identity.data.block.type.*
@@ -17,7 +18,7 @@ interface NaviFactoryService {
 }
 
 interface NaviBuilder {
-    suspend fun buildOneNavi(parentPath: Path, record: RoomRecord): Path
+    suspend fun buildOneNavi(context: Context, parentPath: Path, record: RoomRecord): Path
 }
 
 /**
@@ -39,10 +40,10 @@ abstract class NaviFactory : NaviBuilder {
         naviBuilderFactoryMap[type] = naviBuilderFactory
     }
 
-    override suspend fun buildOneNavi(parentPath: Path, record: RoomRecord): Path {
+    override suspend fun buildOneNavi(context: Context, parentPath: Path, record: RoomRecord): Path {
         val type = record.type
         val factory = naviBuilderFactoryMap[type] ?: unknownNaviFactory
-        return factory.buildNavi(parentPath, record)
+        return factory.buildNavi(context, parentPath, record)
     }
 
     //region plugin
@@ -156,15 +157,15 @@ abstract class NaviFactory : NaviBuilder {
 }
 
 class FunctionNaviBuilderFactory(
-    val func: suspend (parentPath: Path, record: RoomRecord) -> Path
+    val func: suspend (context: Context, parentPath: Path, record: RoomRecord) -> Path
 ) : NaviBuilderFactory {
-    override suspend fun buildNavi(parentPath: Path, record: RoomRecord): Path {
-        return func(parentPath, record)
+    override suspend fun buildNavi(context: Context, parentPath: Path, record: RoomRecord): Path {
+        return func(context, parentPath, record)
     }
 }
 
 class UnknownNaviBuilderFactory : NaviBuilderFactory {
-    override suspend fun buildNavi(parentPath: Path, record: RoomRecord): Path {
+    override suspend fun buildNavi(context: Context, parentPath: Path, record: RoomRecord): Path {
         return parentPath
     }
 }
@@ -173,7 +174,7 @@ class UnknownNaviBuilderFactory : NaviBuilderFactory {
  * 针对某一符文类型的工厂
  */
 interface NaviBuilderFactory {
-    suspend fun buildNavi(parentPath: Path, record: RoomRecord): Path
+    suspend fun buildNavi(context: Context, parentPath: Path, record: RoomRecord): Path
 }
 
 interface PluginBlockTypeNaviService {
