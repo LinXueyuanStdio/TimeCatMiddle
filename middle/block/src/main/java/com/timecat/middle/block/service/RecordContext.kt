@@ -14,15 +14,15 @@ import com.timecat.layout.ui.entity.BaseItem
  * @usage null
  */
 interface RecordContext {
-    fun init(context: Context, permission: CardPermission)
+    suspend fun init(context: Context, permission: CardPermission)
 
-    fun getMenu(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService, menuContext: (MenuContext) -> Unit)
-    fun getHeader(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService, headers: (List<BaseItem<*>>) -> Unit)
-    fun getInputSend(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService, inputContext: (InputContext) -> Unit)
-    fun getCommand(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService, commandContext: (CommandContext) -> Unit)
-    fun getPanel(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService, panelContext: (PanelContext) -> Unit)
-    fun getChipButtons(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService, buttons: (List<Chip>) -> Unit)
-    fun getChipType(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService, types: (List<TypeChip>) -> Unit)
+    suspend fun getMenu(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): MenuContext?
+    suspend fun getHeader(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): List<BaseItem<*>>
+    suspend fun getInputSend(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): InputContext?
+    suspend fun getCommand(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): CommandContext?
+    suspend fun getPanel(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): PanelContext?
+    suspend fun getChipButtons(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): List<Chip>
+    suspend fun getChipType(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): List<TypeChip>
 
     fun loadForVirtualPath(
         context: Context,
