@@ -79,4 +79,8 @@ object DNS {
     fun buildUri(): Uri.Builder {
         return Uri.EMPTY.buildUpon().scheme(SCHEMA)
     }
+
+    fun buildUri(parentUrl: String): Uri.Builder {
+        return Uri.parse(parentUrl).buildUpon()
+    }
 }
