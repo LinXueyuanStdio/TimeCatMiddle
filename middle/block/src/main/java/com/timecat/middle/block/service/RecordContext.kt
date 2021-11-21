@@ -16,6 +16,8 @@ import com.timecat.layout.ui.entity.BaseItem
 interface RecordContext {
     suspend fun init(context: Context, permission: CardPermission, homeService: HomeService)
 
+    suspend fun setInitSortTypeAndSortAsc(homeService: HomeService, sortType: Int, sortAsc: Boolean)
+
     suspend fun getMenu(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): MenuContext?
     suspend fun getHeader(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): List<BaseItem<*>>
     suspend fun getInputSend(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): InputContext?
