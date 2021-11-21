@@ -4,8 +4,6 @@ import android.content.Context
 import com.timecat.data.room.record.RoomRecord
 import com.timecat.layout.ui.business.breadcrumb.Path
 import com.timecat.layout.ui.entity.BaseItem
-import com.timecat.middle.block.ext.launch
-import kotlinx.coroutines.Dispatchers
 
 /**
  * @author 林学渊
@@ -38,29 +36,34 @@ interface ContainerService {
         context: Context,
         parentUuid: String,
         homeService: HomeService
+    )
+
+    suspend fun loadContextRecordByDefault(
+        path: Path,
+        context: Context,
+        parentUuid: String,
+        homeService: HomeService
     ) {
         //这是默认实现。如果不需要，请务必不要调用 super
         if (parentUuid.isEmpty()) {
             homeService.loadContextRecord(null)
         } else {
-            context.launch(Dispatchers.IO) {
-                if (parentUuid.startsWith(DNS.SCHEMA)) {
-                    val (dbPath, recordId) = DNS.parsePath(parentUuid)
-                    val remoteDb = homeService.secondaryDb(dbPath)
-                    if (recordId.isEmpty()) {
-                        homeService.loadContextRecord(null)
-                    } else if (remoteDb == null) {
-                        homeService.loadContextRecord(null)
-                    } else {
-                        val record = remoteDb.getByUuid(recordId)
-                        homeService.loadContextRecord(record)
-                    }
+            if (parentUuid.startsWith(DNS.SCHEMA)) {
+                val (dbPath, recordId) = DNS.parsePath(parentUuid)
+                val remoteDb = homeService.secondaryDb(dbPath)
+                if (recordId.isEmpty()) {
+                    homeService.loadContextRecord(null)
+                } else if (remoteDb == null) {
+                    homeService.loadContextRecord(null)
                 } else {
-                    val currentDb = homeService.primaryDb()
-                    val recordId = parentUuid
-                    val record = currentDb.getByUuid(recordId)
+                    val record = remoteDb.getByUuid(recordId)
                     homeService.loadContextRecord(record)
                 }
+            } else {
+                val currentDb = homeService.primaryDb()
+                val recordId = parentUuid
+                val record = currentDb.getByUuid(recordId)
+                homeService.loadContextRecord(record)
             }
         }
     }
