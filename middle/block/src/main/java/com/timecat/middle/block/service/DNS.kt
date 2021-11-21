@@ -42,19 +42,32 @@ object DNS {
     fun getRecordId(url: String): String {
         if (url.startsWith(SCHEMA)) {
             val uri = Uri.parse(url)
-            return uri.getQueryParameter(QUERY_RecordId) ?: DEFAULT_QUERY_RecordId
+            return getRecordId(uri)
         } else {
             return url
         }
     }
 
+    fun getRecordId(uri: Uri): String {
+        return uri.getQueryParameter(QUERY_RecordId) ?: DEFAULT_QUERY_RecordId
+    }
+
     fun getSpaceId(url: String): String {
         if (url.startsWith(SCHEMA)) {
             val uri = Uri.parse(url)
-            return uri.getQueryParameter(QUERY_SpaceId) ?: DEFAULT_QUERY_SpaceId
+            return getSpaceId(uri)
         } else {
             return url
         }
+    }
+
+    fun getSpaceId(uri: Uri): String {
+        return uri.getQueryParameter(QUERY_SpaceId) ?: DEFAULT_QUERY_SpaceId
+    }
+
+    fun buildUri(dbPath: String, recordId: String, redirect: String): Uri.Builder {
+        return buildUri(dbPath, recordId)
+            .appendQueryParameter(QUERY_Redirect, redirect)
     }
 
     fun buildUri(dbPath: String, recordId: String): Uri.Builder {
