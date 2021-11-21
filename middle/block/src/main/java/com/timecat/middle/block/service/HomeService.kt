@@ -197,9 +197,6 @@ interface ItemActionListener {
     fun onLongClick(selectPosition: Int)
     fun addAction(action: ThingAction)
     fun setTop(isTop: Boolean)
-    fun setInitSortTypeAndSortAsc(sortType: Int, sortAsc: Boolean)
-    fun getSortType(): Int
-    fun getSortAsc(): Boolean
     fun focus(item: IFlexible<*>)
     fun close()
 
@@ -207,8 +204,6 @@ interface ItemActionListener {
     fun changeType(item: BaseRecordItem<*>, type: Int, subType: Int, listener: ItemCommonListener)
     fun addNewItemToEndOfList(record: RoomRecord, listener: ItemCommonListener)
     fun insert(position: Int, record: RoomRecord, listener: ItemCommonListener)
-    fun setSortType(type: Int, listener: ItemCommonListener)
-    fun setSortAsc(ascending: Boolean, listener: ItemCommonListener)
 }
 
 interface PlayAudioCallback {

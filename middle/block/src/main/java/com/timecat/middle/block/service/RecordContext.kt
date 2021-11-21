@@ -14,7 +14,7 @@ import com.timecat.layout.ui.entity.BaseItem
  * @usage null
  */
 interface RecordContext {
-    suspend fun init(context: Context, permission: CardPermission)
+    suspend fun init(context: Context, permission: CardPermission, homeService: HomeService)
 
     suspend fun getMenu(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): MenuContext?
     suspend fun getHeader(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService): List<BaseItem<*>>
