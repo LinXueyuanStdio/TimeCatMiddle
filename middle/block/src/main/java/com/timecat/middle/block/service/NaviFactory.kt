@@ -84,7 +84,7 @@ abstract class NaviFactory : NaviBuilder {
     protected suspend fun loadBasicFactory() {
         loadFactory(BLOCK_RECORD, buildFactoryFor_BLOCK_RECORD())
         loadFactory(BLOCK_DATABASE, buildFactoryFor_BLOCK_DATABASE())
-        loadFactory(BLOCK_NOVEL, buildFactoryFor_BLOCK_NOVEL())
+        loadFactory(BLOCK_CARD, buildFactoryFor_BLOCK_CARD())
         loadFactory(BLOCK_MARKDOWN, buildFactoryFor_BLOCK_MARKDOWN())
         loadFactory(BLOCK_MESSAGE, buildFactoryFor_BLOCK_MESSAGE())
         loadFactory(BLOCK_ABOUT, buildFactoryFor_BLOCK_ABOUT())
@@ -120,7 +120,7 @@ abstract class NaviFactory : NaviBuilder {
 
     open suspend fun buildFactoryFor_BLOCK_RECORD(): NaviBuilderFactory = unknownNaviFactory
     open suspend fun buildFactoryFor_BLOCK_DATABASE(): NaviBuilderFactory = unknownNaviFactory
-    open suspend fun buildFactoryFor_BLOCK_NOVEL(): NaviBuilderFactory = unknownNaviFactory
+    open suspend fun buildFactoryFor_BLOCK_CARD(): NaviBuilderFactory = unknownNaviFactory
     open suspend fun buildFactoryFor_BLOCK_MARKDOWN(): NaviBuilderFactory = unknownNaviFactory
     open suspend fun buildFactoryFor_BLOCK_MESSAGE(): NaviBuilderFactory = unknownNaviFactory
     open suspend fun buildFactoryFor_BLOCK_ABOUT(): NaviBuilderFactory = unknownNaviFactory

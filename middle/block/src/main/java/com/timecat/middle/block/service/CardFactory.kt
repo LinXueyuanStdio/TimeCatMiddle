@@ -136,7 +136,7 @@ abstract class CardFactory : CardBuilder {
     protected suspend fun loadBasicFactory() {
         loadFactory(BLOCK_RECORD, buildFactoryFor_BLOCK_RECORD())
         loadFactory(BLOCK_DATABASE, buildFactoryFor_BLOCK_DATABASE())
-        loadFactory(BLOCK_NOVEL, buildFactoryFor_BLOCK_NOVEL())
+        loadFactory(BLOCK_CARD, buildFactoryFor_BLOCK_CARD())
         loadFactory(BLOCK_MARKDOWN, buildFactoryFor_BLOCK_MARKDOWN())
         loadFactory(BLOCK_MESSAGE, buildFactoryFor_BLOCK_MESSAGE())
         loadFactory(BLOCK_ABOUT, buildFactoryFor_BLOCK_ABOUT())
@@ -172,7 +172,7 @@ abstract class CardFactory : CardBuilder {
 
     open suspend fun buildFactoryFor_BLOCK_RECORD(): CardBuilderFactory = unknownCardFactory
     open suspend fun buildFactoryFor_BLOCK_DATABASE(): CardBuilderFactory = unknownCardFactory
-    open suspend fun buildFactoryFor_BLOCK_NOVEL(): CardBuilderFactory = unknownCardFactory
+    open suspend fun buildFactoryFor_BLOCK_CARD(): CardBuilderFactory = unknownCardFactory
     open suspend fun buildFactoryFor_BLOCK_MARKDOWN(): CardBuilderFactory = unknownCardFactory
     open suspend fun buildFactoryFor_BLOCK_MESSAGE(): CardBuilderFactory = unknownCardFactory
     open suspend fun buildFactoryFor_BLOCK_ABOUT(): CardBuilderFactory = unknownCardFactory
