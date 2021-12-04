@@ -19,6 +19,8 @@ enum class CardPermission(val title: String) {
     fun noAccess(): Boolean = !canRead()
     fun canRead(): Boolean = this != NoAccess
     fun canInteract(): Boolean = this == Interactive || this == Editable || this == FullAccess
+    fun canEdit(): Boolean = this == Editable || this == FullAccess
     fun canSave(): Boolean = this == Editable || this == FullAccess
     fun canDelete(): Boolean = this == Editable || this == FullAccess
+    fun fullAccess(): Boolean = this == FullAccess
 }
