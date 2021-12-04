@@ -85,9 +85,11 @@ abstract class CreateFactory : CreateBuilder {
         return typeCard
     }
 
+    abstract fun getTypesInOrder(): List<Int>
+
     suspend fun getTypeCardsForFolder(context: Context, folder: RoomRecord?, listener: ItemCommonListener, onDismiss: () -> Unit): List<TypeCard> {
         val list = mutableListOf<TypeCard>()
-        for (i in factoryMap.keys) {
+        for (i in getTypesInOrder()) {
             val typeItem = factoryMap[i]?.typeItem(folder) ?: continue
             val subItemService = subItemMap[i] ?: continue
             val items = subItemService.subItems(folder, listener)
