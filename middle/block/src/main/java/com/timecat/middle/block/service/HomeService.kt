@@ -217,22 +217,22 @@ interface ItemGetterListener {
     fun adapter(): BaseAdapter
     fun primaryDb(): IDatabase
     fun secondaryDb(url: String, callback: LoadDbCallback)
-    fun secondaryDb(url: String, callback: (IDatabase) -> Unit) {
+    fun secondaryDb(url: String, callback: (CardPermission, IDatabase) -> Unit) {
         secondaryDb(url, object : SimpleLoadDbCallback() {
-            override fun onSuccess(remoteDb: IDatabase) {
-                callback(remoteDb)
+            override fun onSuccess(permission: CardPermission, remoteDb: IDatabase) {
+                callback(permission, remoteDb)
             }
         })
     }
 
-    suspend fun secondaryDb(url: String): IDatabase? = suspendCoroutine {
+    suspend fun secondaryDb(url: String): Pair<CardPermission, IDatabase> = suspendCoroutine {
         secondaryDb(url, object : LoadDbCallback {
-            override fun onSuccess(remoteDb: IDatabase) {
-                it.resume(remoteDb)
+            override fun onSuccess(permission: CardPermission, remoteDb: IDatabase) {
+                it.resume(permission to remoteDb)
             }
 
             override fun onFail(text: String, retry: () -> Unit) {
-                it.resume(null)
+                it.resume(CardPermission.ReadOnly to EmptyDatabase())
             }
         })
     }
@@ -250,7 +250,7 @@ interface ItemGetterListener {
 }
 
 interface LoadDbCallback {
-    fun onSuccess(remoteDb: IDatabase)
+    fun onSuccess(permission: CardPermission, remoteDb: IDatabase)
     fun onFail(text: String, retry: () -> Unit)
 }
 
