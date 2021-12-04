@@ -232,7 +232,7 @@ interface ItemGetterListener {
             }
 
             override fun onFail(text: String, retry: () -> Unit) {
-                it.resume(CardPermission.ReadOnly to EmptyDatabase())
+                it.resume(CardPermission.NoAccess to EmptyDatabase())
             }
         })
     }

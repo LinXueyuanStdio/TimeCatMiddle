@@ -113,7 +113,7 @@ class EmptyBackend : IBackend {
     }
 
     override suspend fun getPermission(context: Context, spaceId: String): CardPermission {
-        return CardPermission.FullAccess
+        return CardPermission.NoAccess
     }
 }
 

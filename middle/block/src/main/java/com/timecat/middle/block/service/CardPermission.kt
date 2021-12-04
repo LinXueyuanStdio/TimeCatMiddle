@@ -10,8 +10,15 @@ package com.timecat.middle.block.service
  * @usage null
  */
 enum class CardPermission(val title: String) {
+    NoAccess("无权限"),
     ReadOnly("仅可读"),
     Interactive("可交互"),
     Editable("可编辑"),
-    FullAccess("完全权限"),
+    FullAccess("完全权限");
+
+    fun noAccess(): Boolean = !canRead()
+    fun canRead(): Boolean = this != NoAccess
+    fun canInteract(): Boolean = this == Interactive || this == Editable || this == FullAccess
+    fun canSave(): Boolean = this == Editable || this == FullAccess
+    fun canDelete(): Boolean = this == Editable || this == FullAccess
 }

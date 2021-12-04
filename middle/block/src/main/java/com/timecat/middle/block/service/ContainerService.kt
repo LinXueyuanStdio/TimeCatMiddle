@@ -50,10 +50,10 @@ interface ContainerService {
         } else {
             if (parentUuid.startsWith(DNS.SCHEMA)) {
                 val (dbPath, recordId) = DNS.parsePath(parentUuid)
-                val remoteDb = homeService.secondaryDb(dbPath)
+                val (permission, remoteDb) = homeService.secondaryDb(dbPath)
                 if (recordId.isEmpty()) {
                     homeService.loadContextRecord(null)
-                } else if (remoteDb == null) {
+                } else if (permission.noAccess()){
                     homeService.loadContextRecord(null)
                 } else {
                     val record = remoteDb.getByUuid(recordId)
