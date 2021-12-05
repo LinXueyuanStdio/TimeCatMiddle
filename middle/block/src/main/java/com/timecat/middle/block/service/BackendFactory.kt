@@ -14,6 +14,7 @@ import com.timecat.identity.data.block.type.*
 interface IBackend {
     suspend fun getPermission(context: Context, spaceId: String): CardPermission
     suspend fun getDatabase(context: Context, spaceId: String): IDatabase
+    suspend fun getDatabaseAndPermission(context: Context, spaceId: String): Pair<CardPermission, IDatabase>
 }
 
 interface BackendFactoryService {
@@ -114,6 +115,10 @@ class EmptyBackend : IBackend {
 
     override suspend fun getPermission(context: Context, spaceId: String): CardPermission {
         return CardPermission.NoAccess
+    }
+
+    override suspend fun getDatabaseAndPermission(context: Context, spaceId: String): Pair<CardPermission, IDatabase> {
+        return CardPermission.NoAccess to EmptyDatabase()
     }
 }
 

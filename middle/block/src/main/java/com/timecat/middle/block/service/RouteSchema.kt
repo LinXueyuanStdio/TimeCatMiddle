@@ -55,4 +55,10 @@ object RouteSchema {
     const val OnlineMineHost = "mine.timecat.online"
     const val onlineMineUrl = "${DNS.SCHEMA}://${OnlineMineHost}"
 
+    fun getBackendType(spaceId: String): String = when {
+        //TODO 新增后端时记得 增加路径 解析到该后端
+        spaceId.startsWith(OnlineHost) -> OnlineHost
+        spaceId.startsWith(LocalHost) -> LocalHost
+        else -> LocalHost
+    }
 }

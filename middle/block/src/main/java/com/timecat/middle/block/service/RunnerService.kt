@@ -10,5 +10,5 @@ import android.content.Context
  * @usage null
  */
 interface RunnerService {
-    fun runButtonById(context: Context, uuid: String)
+    fun runButtonById(context: Context, spaceId: String, recordId: String)
 }

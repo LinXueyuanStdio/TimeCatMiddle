@@ -55,7 +55,7 @@ interface HomeService : DatabaseContext, PathContext, ItemGetterListener {
 }
 
 interface DatabaseContext {
-    fun loadDatabase(url: String, database: IDatabase)
+    fun loadDatabase(url: String, permission: CardPermission, database: IDatabase)
     fun loadContextRecord(record: RoomRecord?)
 }
 
@@ -215,18 +215,19 @@ interface PlayAudioCallback {
 
 interface ItemGetterListener {
     fun adapter(): BaseAdapter
+    fun primarySpaceId(): String
     fun primaryDb(): IDatabase
-    fun secondaryDb(url: String, callback: LoadDbCallback)
-    fun secondaryDb(url: String, callback: (CardPermission, IDatabase) -> Unit) {
-        secondaryDb(url, object : SimpleLoadDbCallback() {
+    fun secondaryDb(spaceId: String, callback: LoadDbCallback)
+    fun secondaryDb(spaceId: String, callback: (CardPermission, IDatabase) -> Unit) {
+        secondaryDb(spaceId, object : SimpleLoadDbCallback() {
             override fun onSuccess(permission: CardPermission, remoteDb: IDatabase) {
                 callback(permission, remoteDb)
             }
         })
     }
 
-    suspend fun secondaryDb(url: String): Pair<CardPermission, IDatabase> = suspendCoroutine {
-        secondaryDb(url, object : LoadDbCallback {
+    suspend fun secondaryDb(spaceId: String): Pair<CardPermission, IDatabase> = suspendCoroutine {
+        secondaryDb(spaceId, object : LoadDbCallback {
             override fun onSuccess(permission: CardPermission, remoteDb: IDatabase) {
                 it.resume(permission to remoteDb)
             }
