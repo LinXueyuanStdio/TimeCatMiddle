@@ -215,7 +215,6 @@ interface PlayAudioCallback {
 
 interface ItemGetterListener {
     fun adapter(): BaseAdapter
-    fun primarySpaceId(): String
     fun primaryDb(): IDatabase
     fun secondaryDb(spaceId: String, callback: LoadDbCallback)
     fun secondaryDb(spaceId: String, callback: (CardPermission, IDatabase) -> Unit) {
@@ -262,6 +261,14 @@ abstract class SimpleLoadDbCallback : LoadDbCallback {
 }
 
 interface IDatabase {
+    fun primaryDbUrl(): String
+
+    fun encode(record: RoomRecord): String {
+        return DNS.parse(primaryDbUrl()).buildUpon()
+            .appendQueryParameter(DNS.QUERY_RecordId, record.uuid)
+            .build().toString()
+    }
+
     fun deleteBatch(record: List<RoomRecord>) {
         record.forEach {
             it.setDeleted(true)
@@ -551,6 +558,10 @@ open class RequestSingleOrNullCallback<T> {
 }
 
 class EmptyDatabase : IDatabase {
+    override fun primaryDbUrl(): String {
+        return DNS.buildUri(RouteSchema.LocalHost, DNS.DEFAULT_QUERY_SpaceId).build().toString()
+    }
+
     override fun updateRecord(record: RoomRecord) {
     }
 

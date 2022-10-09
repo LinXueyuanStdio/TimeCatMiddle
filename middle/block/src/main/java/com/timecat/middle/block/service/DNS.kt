@@ -34,9 +34,9 @@ object DNS {
     }
 
     fun parsePath(uri: Uri): Pair<String, String> {
-        val dbPath = uri.getQueryParameter(QUERY_SpaceId) ?: DEFAULT_QUERY_SpaceId
+        val spaceId = uri.getQueryParameter(QUERY_SpaceId) ?: DEFAULT_QUERY_SpaceId
         val recordId = uri.getQueryParameter(QUERY_RecordId) ?: DEFAULT_QUERY_RecordId
-        return dbPath to recordId
+        return spaceId to recordId
     }
 
     fun getRecordId(url: String): String {
@@ -54,7 +54,7 @@ object DNS {
 
     fun getSpaceId(url: String): String {
         if (url.startsWith(SCHEMA)) {
-            val uri = Uri.parse(url)
+            val uri = parse(url)
             return getSpaceId(uri)
         } else {
             return url
@@ -65,22 +65,22 @@ object DNS {
         return uri.getQueryParameter(QUERY_SpaceId) ?: DEFAULT_QUERY_SpaceId
     }
 
-    fun buildUri(dbPath: String, recordId: String, redirect: String): Uri.Builder {
-        return buildUri(dbPath, recordId)
+    fun buildUri(authority: String, spaceId: String, recordId: String, redirect: String): Uri.Builder {
+        return buildUri(authority, spaceId, recordId)
             .appendQueryParameter(QUERY_Redirect, redirect)
     }
 
-    fun buildUri(dbPath: String, recordId: String): Uri.Builder {
-        return buildUri()
-            .appendQueryParameter(QUERY_SpaceId, dbPath)
+    fun buildUri(authority: String, spaceId: String, recordId: String): Uri.Builder {
+        return buildUri(authority, spaceId)
             .appendQueryParameter(QUERY_RecordId, recordId)
     }
 
-    fun buildUri(): Uri.Builder {
-        return Uri.EMPTY.buildUpon().scheme(SCHEMA)
+    fun buildUri(authority: String, spaceId: String): Uri.Builder {
+        return buildUri(authority)
+            .appendQueryParameter(QUERY_SpaceId, spaceId)
     }
 
-    fun buildUri(parentUrl: String): Uri.Builder {
-        return Uri.parse(parentUrl).buildUpon()
+    fun buildUri(authority: String): Uri.Builder {
+        return Uri.EMPTY.buildUpon().scheme(SCHEMA).authority(authority)
     }
 }
